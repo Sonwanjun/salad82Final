@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mybatis 공통적인 환경 설정 -->
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<!-- <typeAlias alias="member" type="com.board.icia.bean.Member"/>
+		<typeAlias alias="board" type="com.board.icia.bean.Board"/> -->
+		<package name="com.icia.salad82final.bean"/>
+	</typeAliases>
+</configuration>
+
+<!-- 마이바티스 사용법
+1. parameterType에 1개의 Type만 올 수 있다.
+2. parameterType은 생략 가능하다(하지만 권장하지 않음)
+3. 여러개의 데이터는 빈 또는 HashMap<key,value> 객체에 저장해서 가져온다
+4. parameterType이 변수인 경우 #{변수명}
+5. parameterType이 빈인 경우 #{필드명}
+6. parameterType이 Map인 경우 #{key}
+7. select에서 resultType에는 1개의 Type만 올 수 있다.
+8. #{} : 문자열인 경우 ''추가됨
+9. ${} : ''(따옴표) 없이 그대로 입력됨
+ -->
