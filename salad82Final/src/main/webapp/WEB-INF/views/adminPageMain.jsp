@@ -167,5 +167,6 @@ body {
 			}
 		});
 	};
+	sellerInfo();
 </script>
 </html>
