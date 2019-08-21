@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>MyRecipeHome</title>
 </head>
-<style>
+<style type="text/css">
 h1 {
 	text-align: center;
 }
@@ -23,17 +23,26 @@ p {
 	padding: 1%;
 }
 
+ul {
+	list-style-type: none;
+}
+
+li {
+	display: inline;
+	float: left;
+}
+
 .footer {
 	width: 100%;
 	height: 120px;
 	position: absolute;
 	bottom: 0;
-	background:#009900;
+	background: #009900;
 	font-size: 16;
-	
 }
-#footer{
-background:#009900;
+
+#footer {
+	background: #009900;
 }
 
 #myRecipeTitle {
@@ -67,7 +76,31 @@ background:#009900;
 	border: black solid 5px;
 }
 
-#suggestRecipe {
+.suggestRecipeWraper {
+	text-align: center;
+}
+
+.suggestRecipe {
+	text-align: center;
+	display: inline-block;
+	margin: 30px 80px;
+}
+
+.searchRecipe {
+	text-align: center;
+}
+
+#boardlistsTitle {
+	margin-top: 20px;
+	margin-left: 12.5px;
+	margin-bottom: 20px;
+	width: 100%;
+	height: 80px;
+	text-align: center;
+	border: black solid 5px;
+}
+
+#boardlist {
 	text-align: center;
 	border: black double 3px;
 	margin-top: 20px;
@@ -77,18 +110,19 @@ background:#009900;
 	padding-bottom: 15px;
 	float: center;
 }
-#searchRecipe {
-	text-align: center;
-	width:1350px;
+
+div {
+	overflow-x: auto;
 }
-#boardlistsTitle {
-margin-top: 20px;
-	margin-left: 12.5px;
-	margin-bottom: 20px;
+
+table {
 	width: 100%;
-	height: 80px;
-	text-align: center;
-	border: black solid 5px;
+	min-width: 500px;
+}
+
+td {
+	padding: 20px;
+	border: 1px solid #444444;
 }
 </style>
 <body>
@@ -128,28 +162,49 @@ margin-top: 20px;
 	<div id=suggestRecipeTitle>
 		<h2>강력 추천 나의레시피</h2>
 	</div>
-	<div id=suggestRecipe>
-		<ul>
-			<td><img src="resources/salad.jpg" width="150px",height="120px", vspace="30px", hspace="110px"></td>
-			<td>이거슨베스트</td>
-			<td><img src="resources/salad.jpg" width="150px",height="120px", vspace="30px", hspace="110px"></td>
-			<td>이거슨베스트</td>
-			<td><img src="resources/salad.jpg" width="150px",height="120px", vspace="30px", hspace="110px"></td>
-			<td>이거슨베스트</td>
-		</ul>
+	<div class=suggestRecipeWraper>
+		<div class="suggestRecipe">
+			<img src="resources/salad.jpg">
+		</div>
+		<div class="suggestRecipe">
+			<img src="resources/salad.jpg">
+		</div>
+		<div class="suggestRecipe">
+			<img src="resources/salad.jpg">
+		</div>
 	</div>
-	<div id="searchRecipe">
-	<input type="text" placeholder="검색어 입력" ><button>검색</button></div>
+	<div class="searchRecipe">
+		<input type="text" placeholder="검색어 입력" name="textfield"
+			style="text-align: center; width: 1200px; letter-spacing: 10px; font-size: 18px">
+		<button>검색</button>
+	</div>
 	<br>
-	
-	<div id="boardlistsTitle"><h2>마이 레시피 리스트</h2> </div>
-	<div id="board"><h1>쫘라라라라라라라ㅏㄹ리리리리릴ㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹ리 이거슨 나중에!~</h1></div>
-
+	<div id="boardlistsTitle">
+		<h2>마이 레시피 리스트</h2>
+	</div>
+	<div id="boardlist">
+		<table>
+			<tr>
+				<td>글번호</td>
+				<td>레시피 제목</td>
+				<td colspan="2">작성일</td>
+				<td rowspan="3" >이미지</td>
+			</tr>
+			<tr>
+				<td>재료</td>
+				<td height="130px">재료료료룔ㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹ ㄹㄹㄹㄹㄹㄹㄹ</td>
+				<td>작성자</td>
+				<td>조회수</td>
+				
+			</tr>
+		</table>
+	</div>
+	<br>
+	<br>
 
 	<div id="footer" align="center">
 		<br>업체명: Salad82 | 사업자번호:123-45-6789<br> 주소: 인천 남구 학익동 663-1
-		태승빌딩 | 전화번호:032-123-4567<br> Copyrights(c) ㈜Salad82 2015 all
-		  <br>
+		태승빌딩 | 전화번호:032-123-4567<br> Copyrights(c) ㈜Salad82 2015 all <br>
 	</div>
 </body>
 
