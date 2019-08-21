@@ -132,25 +132,16 @@ text-align:right;
         <a href="./"><i class="fa fa-dashboard"></i><span>Salad82</span></a>
       </li>
       <li class="sub-menu">
-        <a href="./sMyPage"><i class="fa fa-cogs"></i><span>프로필수정</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+        <a href="./cMyPage"><i class="fa fa-cogs"></i><span>프로필수정</span><i class="arrow fa fa-angle-right pull-right"></i></a>
 
       </li>
       <li class="sub-menu">
-        <a href="./ingredient"><i class="fa fa-table"></i><span>재료관리</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+        <a href="./cart"><i class="fa fa-table"></i><span>장바구니 목록</span><i class="arrow fa fa-angle-right pull-right"></i></a>
 
       </li>
       <li class="sub-menu">
-        <a href="./myproductList"><i class="fa fa fa-tasks"></i><span>상품관리</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+        <a href="./myPayment"><i class="fa fa fa-tasks"></i><span>결제내역</span><i class="arrow fa fa-angle-right pull-right"></i></a>
 
-      </li>
-      <li class="sub-menu">
-        <a href="./productStatus"><i class="fa fa-envelope"></i><span>상품주문현황</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-      </li>
-      <li class="sub-menu">
-        <a href="./productSale"><i class="fa fa-bar-chart-o"></i><span>판매실적</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-      </li>
-      <li class="sub-menu">
-        <a href="./requestHome"><i class="fa fa-map-marker"></i><span>재료요청</span><i class="arrow fa fa-angle-right pull-right"></i></a>
       </li>
     </ul>
   </div>
@@ -176,16 +167,12 @@ text-align:right;
 	</tr>
 	</form> 
 	<tr>
-		<td>업체명 </td>
-		<td><input type="text" name="s_name"></td>
-	</tr>
-	<tr>
-		<td>사업자번호 </td>
-		<td><input type="text" name="s_number"></td>
+		<td>이름 </td>
+		<td><input type="text" name="c_name"></td>
 	</tr>
 	<tr>
 		<td>이메일 </td>
-		<td><input type="text" name="s_email">@ 
+		<td><input type="text" name="c_email">@ 
 			<select email="" email="">
                 <option value="naver.com">naver.com</option>
                 <option value="gmail.com">gmail.com</option>
@@ -193,32 +180,47 @@ text-align:right;
 		</td>
 	</tr>
 	<tr>
-		<td>대표번호 </td>
-		<td><input type="text" name="s_phone"></td>
+		<td>전화번호 </td>
+		<td><input type="text" name="c_phone"></td>
 	</tr>
 	<tr>
-		<td>사업자주소 </td>
-		<td><input type="text" name="s_address"></td>
+		<td>개인주소(배송지) </td>
+		<td><input type="text" name="c_address"></td>
+	</tr>
+</table>
+<table align="center">
+	<form name="myform" action="" method="post">
+	<tr>
+		<td colspan="5" class="subject">원하는 카테고리&취미 선택해 주세요.</td>
 	</tr>
 	<tr>
-	<td class="topping">토핑&무게
-    	<select name='topping'>
-        	<option>토핑&무게</option>
-            <option>파프리카(10g)</option>
-            <option>파프리카(50g)</option>
-            <option>양파(10g)</option>
-            <option>양파(50g)</option>
-        </select></td>                                                  
-     <td class="price">가격선정<input type="text" name="s_price">
-     <input type="button" value="추가등록" onclick="add()"></td>
+		<td><input type="checkbox" name="check_list" value="1">고기 &nbsp</td>
+		<td><input type="checkbox" name="check_list" value="1">고~기 &nbsp</td>
+		<td><input type="checkbox" name="check_list" value="1">고오기이 &nbsp</td>
+		<td><input type="checkbox" name="check_list" value="1">한우 &nbsp</td>
+		<td><input type="checkbox" name="check_list" value="1">돼지 &nbsp</td>
 	</tr>
 	<tr>
-		<td>내부사진 등록(필수)</td>
-	 		<td><input type=file name=AttFile[] size=100  onChange="CkImageVal()" class=textidpass>
-	 		<input type=button value='사진 추가' onclick="AddFile()">
-     	</td>
-     </tr>
-     <tr>
+		<td><input type="checkbox" name="check_list" value="1">샐러드 &nbsp</td>
+		<td><input type="checkbox" name="check_list" value="1">샐~러드 &nbsp</td>
+		<td><input type="checkbox" name="check_list" value="1">샐~러~드 &nbsp</td>
+		<td><input type="checkbox" name="check_list" value="1">샐러드! &nbsp</td>
+		<td><input type="checkbox" name="check_list" value="1">샐러리맨 &nbsp</td>
+	</tr>
+	<tr>
+		<td><input type="checkbox" name="check_list" value="1">등산 &nbsp</td>
+		<td><input type="checkbox" name="check_list" value="1">피크닉 &nbsp</td>
+		<td><input type="checkbox" name="check_list" value="1">간편여행 &nbsp</td>
+		<td><input type="checkbox" name="check_list" value="1">몰라 &nbsp</td>
+		<td><input type="checkbox" name="check_list" value="1">모올라아 &nbsp</td>
+	</tr>
+	<tr>
+		<td colspan="5" class="subject">
+		<input type="button" name="Check_All" value="전체선택" onClick="Check(document.myform.check_list)">
+		</td>
+	</tr>
+	</form>
+	<tr>
 		<td colspan="2" class="subject">
 		<input type="submit" value="회원탈퇴">
 		<input type="button" value="수정완료" onclick="goHomeForm()">
