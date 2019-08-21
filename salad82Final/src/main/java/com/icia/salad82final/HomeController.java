@@ -35,9 +35,9 @@ public class HomeController {
 		
 		return "sJoinForm";
 	}
-	@RequestMapping(value = "/nJoinForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/cJoinForm", method = RequestMethod.GET)
 	public String nJoinForm(Locale locale, Model model) {	
 		
-		return "nJoinForm";
+		return "cJoinForm";
 	}
 }
