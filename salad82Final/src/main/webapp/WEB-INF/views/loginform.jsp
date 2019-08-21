@@ -61,8 +61,8 @@ p {
 		<caption>회원가입 종류를 선택해 주세요.</caption>
 		<tbody>
 			<tr>
-				<td width="200" height="300" align="center"><a href="./njoinFrm">일반회원</a></td>
-				<td width="200" height="300" align="center"><a href="./sjoinFrm">판매자회원</a></td>
+				<td width="200" height="300" align="center"><a href="./cJoinForm">일반회원</a></td>
+				<td width="200" height="300" align="center"><a href="./sJoinForm">판매자회원</a></td>
 		</tbody>
 	</table>
 	<div id="footer" align="center"><br>업체명: Salad82 | 사업자번호:123-45-6789<br>

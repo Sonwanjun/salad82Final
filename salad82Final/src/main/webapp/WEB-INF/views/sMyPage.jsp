@@ -87,7 +87,10 @@ body {
   padding-bottom: 13px;
   color: #aeb2b7;
 }
-
+.subject{
+	text-align:center;
+	height:50px;
+}
 h1{
 text-align:center;
 }
@@ -202,14 +205,14 @@ text-align:right;
 	</tr>
 	<tr>
 	<td class="topping">토핑&무게
-    	<select name='topping'>
+    	<select name='topping' style="height:22px">
         	<option>토핑&무게</option>
             <option>파프리카(10g)</option>
             <option>파프리카(50g)</option>
             <option>양파(10g)</option>
             <option>양파(50g)</option>
         </select></td>                                                  
-     <td class="price">가격선정<input type="text" name="s_price">
+     <td class="price">가격선정<input type="text" name="s_price" placeholder="ex)5,000원" style="width:100px">
      <input type="button" value="추가등록" onclick="add()"></td>
 	</tr>
 	<tr>

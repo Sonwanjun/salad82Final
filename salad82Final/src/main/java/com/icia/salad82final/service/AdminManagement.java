@@ -28,7 +28,7 @@ public class AdminManagement {
 		
 		sList = aDao.getSellerInfo(pageNum);
 		if(sList != null) {
-			view = "sellerInfo";
+			view = "selledProdInfo"; //TODO 다 썼으면 sellerInfo로 바꿀것
 			mav.addObject("sList", sList);
 			mav.addObject("paging", getPaging(pageNum, view, "S_SHORT"));
 		} else {
@@ -36,7 +36,7 @@ public class AdminManagement {
 		}
 		mav.setViewName(view);
 		return mav;
-		
+		//TODO 판매자상세-판매기록 페이지와 기능들 만들기
 	}
 
 	public ModelAndView getCustomerInfo(Integer pNum) {
@@ -65,5 +65,13 @@ public class AdminManagement {
 		int pageCount = 2; // 페이지 선택숫자 출력갯수
 		Paging paging = new Paging(maxNum, pNum, listCount, pageCount, infoName);
 		return paging.makeHtmlPaging();
+	}
+
+	public ModelAndView getSelledProdInfo(String s_id) {
+		
+		mav = new ModelAndView();
+		//Seller sb = 
+		return mav;
+		
 	}
 }

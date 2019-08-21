@@ -79,7 +79,7 @@
 				<td>${consumer.c_name }</td>
 				<td><a href="#" onclick="showDetail(${consumer.c_id })">상세정보</a></td>
 			</tr>
-		</c:forEach>
+		</c:forEach>	<!-- 구매자 상세정보 페이지 만들어야함 -->
 	</table>
 	
 	<div align="center">${paging }</div>

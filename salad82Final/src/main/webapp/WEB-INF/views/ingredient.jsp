@@ -156,6 +156,13 @@ text-align:right;
   </div>
 </aside>
 
+<h1>재료관리</h1>
+<hr>
+<p style="text-align:center">
+	<input type="text" name="searchWord" id="searchWord" value="${map.searchIngredient}" placeholder="보유재료만 검색 가능" style="width:300px">
+	<a href="javascript:fn_sarchList()" class="btn">검색</a>
+</p>
+
 <div id="footer" align="center"><br>업체명: Salad82 | 사업자번호:123-45-6789<br>
                         주소: 인천 남구 학익동 663-1 태승빌딩 | 전화번호:032-123-4567<br>
                         Copyrights(c) ㈜Salad82 2015 all rights reserved.</div>
@@ -168,6 +175,9 @@ $("#leftside-navigation .sub-menu > a").click(function(e) {
   $("#leftside-navigation ul ul").slideUp(), $(this).next().is(":visible") || $(this).next().slideDown(),
   e.stopPropagation()
 })
+function fn_searchList(){
+	var searchIngredient=$("#searchIngredient").val();
+}
 </script>
 </html>
 </html>
