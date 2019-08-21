@@ -79,8 +79,11 @@
 				<td><a href="#" onclick="showDetail(${seller.s_id })">상세정보</a></td>
 				<!-- showDetail 만들기 -->
 			</tr>
-		</c:forEach> <!-- 빠밤 -->
+		</c:forEach>
 	</table>
+	
+	<div align="center">${paging }</div>
+	
 </body>
 <script>
 	function consumerInfo(pNum){
