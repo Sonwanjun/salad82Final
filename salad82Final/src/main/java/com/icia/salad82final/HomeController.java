@@ -20,6 +20,11 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
+		return "login";
+	}
+	
 	@RequestMapping(value = "/loginform", method = RequestMethod.GET)
 	public String loginform(Locale locale, Model model) {	
 		
