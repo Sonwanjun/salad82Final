@@ -12,6 +12,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/myRecipe", method = RequestMethod.GET)
 	public String myRecipe(Locale locale, Model model) {
+		System.out.println("call");
 		return "myRecipe";
 	}
 }

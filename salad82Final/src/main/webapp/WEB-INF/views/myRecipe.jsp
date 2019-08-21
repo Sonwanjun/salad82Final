@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,6 +126,10 @@ td {
 	border: 1px solid #444444;
 }
 </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+	
+</script>
 <body>
 	<p>로그인/로그아웃 회원가입/마이페이지 고객센터</p>
 	<h1>로고</h1>
@@ -188,15 +193,28 @@ td {
 				<td>글번호</td>
 				<td>레시피 제목</td>
 				<td colspan="2">작성일</td>
-				<td rowspan="3" >이미지</td>
+				<td rowspan="3">이미지파일</td>
 			</tr>
 			<tr>
 				<td>재료</td>
-				<td height="130px">재료료료룔ㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹ ㄹㄹㄹㄹㄹㄹㄹ</td>
+				<td height="130px">글 내용요요용요용</td>
 				<td>작성자</td>
 				<td>조회수</td>
-				
 			</tr>
+			<c:forEach var="board" items="${board}">
+				<tr>
+					<td>${b_num}</td>
+					<td>레시피 제목</td>
+					<td colspan="2">${b_date}</td>
+					<td rowspan="3">${b_img}</td>
+				</tr>
+				<tr>
+					<td>재료</td>
+					<td height="130px">${b_contents}</td>
+					<td>${c_id}</td>
+					<td>조회수</td>
+				</tr>
+			</c:forEach>
 		</table>
 	</div>
 	<br>

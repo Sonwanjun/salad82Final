@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.icia.salad82final.dao.BoardDao">
+	<select id="getBoardList" parameterType="int" resultType="board">
+		<![CDATA[ 
+		SELECT * FROM BOARD
+		WHERE B_NUM>=#{pageNum}*5-4 AND B_NUM<=#{pageNum}*5
+		]]>
+	</select>
+	<select id="getBoardCount" resultType="int">
+		SELECT COUNT(*) FROM
+		BOARD
+	</select>
+</mapper>
