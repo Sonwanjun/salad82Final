@@ -76,7 +76,7 @@
 				<td class="narrow" style="background-color: skyblue">${seller.ronum }</td>
 				<td>${seller.s_id }</td>
 				<td>${seller.s_name }</td>
-				<td><a href="#" onclick="showDetail(${seller.s_id })">상세정보</a></td>
+				<td><a href="javascript:showDetail('${seller.s_id }','S')">상세정보</a></td>
 				<!-- showDetail 만들기 -->
 			</tr>
 		</c:forEach>
@@ -86,6 +86,31 @@
 	
 </body>
 <script>
+	function showDetail(s_id, m_type){
+		var url;
+		alert('빠밤');
+		if(m_type == 'S'){
+			url = "selledProdInfo";
+		} else if(m_type == 'C') { //문자열 비교에 ==쓰는게 맞나?
+			url = "purcProdInfo";
+		}
+		
+		$.ajax({
+			type : 'get',
+			url : url,
+			data : {s_id : s_id}, //이름 부분에는 따옴표를 붙여도 되고 안붙여도 됨
+			dataType : 'html',
+			success : function(data){
+				alert('성공');
+				$('#ajaxArea').html(data);
+			},
+			error : function(error){
+				console.log(error);
+				alert('에러요!!!!!!!!!');
+			}
+		});
+	};
+
 	function consumerInfo(pNum){
 		$.ajax({
 			type : 'get',
@@ -100,6 +125,6 @@
 				alert('에러다 에러');
 			}
 		});
-	}
+	};
 </script>
 </html>

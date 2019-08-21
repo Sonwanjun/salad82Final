@@ -19,7 +19,7 @@ public class AdminManagement {
 	
 	ModelAndView mav;
 
-	public ModelAndView getSellerInfo(Integer pNum) {
+	public ModelAndView getSellerInfo(Integer pNum) { //판매자정보 페이지 출력용. 상세페이지 아님
 
 		mav = new ModelAndView();
 		String view = null;
