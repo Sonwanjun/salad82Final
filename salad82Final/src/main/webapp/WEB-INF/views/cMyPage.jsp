@@ -150,7 +150,7 @@ text-align:right;
 <!-- DB불러올 정보 -->
 <table align="center">
 	<tr>
-		<td colspan="2" class="subject">구매자 회원가입</td>
+		<td colspan="2" class="subject">구매자 프로필</td>
 	</tr>
 	<tr>
 		<td>아이디 </td>
