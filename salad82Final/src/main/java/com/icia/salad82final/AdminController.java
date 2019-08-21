@@ -47,7 +47,7 @@ public class AdminController {
 		
 		System.out.println("s_id = " + s_id);
 		
-		//mav = am.getSelledProdInfo(s_id); //만들어야한다
+		mav = am.getSelledProdInfo(s_id); //만들어야한다
 		return mav;
 		
 	}
