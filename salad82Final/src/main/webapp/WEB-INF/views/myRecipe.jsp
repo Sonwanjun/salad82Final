@@ -189,34 +189,25 @@ td {
 	</div>
 	<div id="boardlist">
 		<table>
-			<tr>
-				<td>글번호</td>
-				<td>레시피 제목</td>
-				<td colspan="2">작성일</td>
-				<td rowspan="3">이미지파일</td>
-			</tr>
-			<tr>
-				<td>재료</td>
-				<td height="130px">글 내용요요용요용</td>
-				<td>작성자</td>
-				<td>조회수</td>
-			</tr>
-			<c:forEach var="board" items="${board}">
+			<c:forEach var="board" items="${bList}">
 				<tr>
-					<td>${b_num}</td>
-					<td>레시피 제목</td>
-					<td colspan="2">${b_date}</td>
-					<td rowspan="3">${b_img}</td>
+					<td>${board.b_num}</td>
+					<td width="500px">레시피 제목</td>
+					<td colspan="1">${board.c_id}</td>
+					<td>작성일:${board.b_date}</td>
+					<td colspan="1">조회수:${board.b_views}</td>
 				</tr>
 				<tr>
-					<td>재료</td>
-					<td height="130px">${b_contents}</td>
-					<td>${c_id}</td>
-					<td>조회수</td>
+					<td height="130px">재료</td>
+					<td colspan="3">내용:${board.b_contents}</td>
+					<td>이미지지지지</td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
+	<br>
+	<br>
+	
 	<br>
 	<br>
 
