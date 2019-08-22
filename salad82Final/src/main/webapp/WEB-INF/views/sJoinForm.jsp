@@ -5,188 +5,120 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script>
+    new daum.Postcode({
+        oncomplete : function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+        }
+    }).open();
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link
+    href="http://netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css"
+    rel="stylesheet">
+<link rel="stylesheet" href="assets/css/login.css" />
+
 <style>
-a{
-	text-decoration: none;
+h1{
+text-align:center;
 }
-.subject{
-	text-align:center;
-	height:50px;
+p
+{
+text-align:right;
 }
-select{
-	height:25px;
-	width:110px;
-}
-input{
-	width:150px;
-}
-
-h1 {
-	text-align: center;
-}
-
-p {
-	text-align: right;
-}
-
 #header {
-	width: 100%;
-	text-align: center;
-	background: #009900;
-	font-size: 20;
-	padding: 1%;
-}
+    width: 100%;
+    text-align:center;
+    background:#009900;
+    font-size: 20;
+    padding:1%;
+}      
 
-#footer {
-	width: 100%;
-	height: 120px;
-	position: absolute;
-	bottom: 0;
-	background: #009900;
-	font-size: 16;
+#footer
+{
+   width: 100%;
+   height: 120px;
+   position: absolute;
+   bottom:0;
+   background: #009900;
+   font-size: 16;
+}
+h2{
+	text-align:center;
 }
 </style>
-
 </head>
 <body>
-	<p>로그인/로그아웃 회원가입/마이페이지 고객센터</p>
-	<h1>로고</h1>
-	<div id="header">DIY SIG BEST Recipe</div>
-	
-<table align="center">
-	<tr>
-		<td colspan="2" class="subject">판매자 회원가입</td>
-	</tr>
-	<tr>
-		<td>아이디 </td>
-		<td><input type="text" id="id" name="s_id"></td>
-	</tr>
-	<form name="form" action="#" onsubmit="return validForm(this)">
-	<tr>
-		<td>비밀번호 </td>
-		<td><input type="text" name="s_pwd"></td>
-	</tr>
-	<tr>
-		<td>비밀번호 재확인 </td>
-		<td><input type="text" name="s_pwdchek">&nbsp&nbsp<input type="submit" value="중복체크"></td>
-	</tr>
-	</form> 
-	<tr>
-		<td>업체명 </td>
-		<td><input type="text" name="s_name"></td>
-	</tr>
-	<tr>
-		<td>사업자번호 </td>
-		<td><input type="text" name="s_number"></td>
-	</tr>
-	<tr>
-		<td>이메일 </td>
-		<td><input type="text" name="s_email">@ 
-			<select email="" email="">
-                <option value="naver.com">naver.com</option>
-                <option value="gmail.com">gmail.com</option>
-			</select>
-		</td>
-	</tr>
-	<tr>
-		<td>대표번호 </td>
-		<td><input type="text" name="s_phone"></td>
-	</tr>
-	<tr>
-		<td>사업자주소 </td>
-		<td><input type="text" name="s_address"></td>
-	</tr>
-	<tr class="row">
-		
-	</tr>
 
-	<tr>
-	<td class="topping">토핑&무게
-    	<select name='topping'>
-        	<option>토핑&무게</option>
-            <option>파프리카(10g)</option>
-            <option>파프리카(50g)</option>
-            <option>양파(10g)</option>
-            <option>양파(50g)</option>
-        </select></td>                                                  
-     <td class="price">가격선정<input type="text" name="s_price">
-     <input type="button" value="추가등록" onclick="add()"></td>
-	</tr>
-	<tr>
-		<td>내부사진 등록(필수)</td>
-	 		<td><input type=file name=AttFile[] size=100  onChange="CkImageVal()" class=textidpass>
-	 		<input type=button value='사진 추가' onclick="AddFile()">
-     	</td>
-     </tr>
-     <tr>
-		<td>업체추천메뉴 </td>
-		<td><input type="text" name="s_best"></td>
-	</tr>
-	<tr>
-		<td>기타 상세설명 </td>
-		<td><textarea id="memo" rows="3" cols="50"></textarea></td>
-	</tr>
-	<tr>
-		<td colspan="2" class="subject">
-		<input type="submit" value="회원가입">
-		<input type="button" value="취소" onclick="goLoginForm()">
-		</td>
-	</tr>
-</table>
-	<div id="footer" align="center">
-		<br>업체명: Salad82 | 사업자번호:123-45-6789<br> 주소: 인천 남구 학익동 663-1
-		태승빌딩 | 전화번호:032-123-4567<br> Copyrights(c) ㈜Salad82 2015 all
-		rights reserved.
-	</div>
+<p>로그인/로그아웃    회원가입/마이페이지    고객센터</p>
+<h1>
+   로고
+</h1>
+<div id="header">DIY SIG BEST Recipe</div>
+
+<h2>판매자 회원가입</h2>
+<div class='container' align="center">
+        <div class="wrapper">
+            <div class="image"></div>
+            <div class="join">
+                <form name="signupForm" id="signupForm" method="post" action="sellerInsert">
+                    <div class="input">
+                        <input type="text" class="box" placeholder="아이디" name="s_id"
+                            required>
+                    </div>
+                    <div class="input">
+                        <input type="password" class="box" placeholder="비밀번호"
+                            name="s_pwd" required>
+                    </div>
+                    <div class="input">
+                        <input type="password" class="box" placeholder="비밀번호 확인"
+                            name="passwordConfirm" required>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="box" placeholder="업체명" name="s_name"
+                            required>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="box" placeholder="사업자번호(-없이 입력해주세요.)" name="s_num"
+                            required>
+                    </div>
+                    <div class="input">
+                        <input type="email" class="box" placeholder="이메일" name="s_email"
+                            required>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="box" placeholder="대표번호(-없이 입력해주세요.)" name="s_phone"
+                            required>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="box" placeholder="주소(인천 미추홀구 250번길 아이유1차 102동 1201호)" name="s_address" style="width:400px"
+                            required>
+                    </div>
+                   <div class="input">
+                 		(내부사진등록해주세요.)
+                            <input type="file" name="files" id="files" multiple="multiple" onchange="fileChk(this)"/>
+							<input type="hidden" value="0" id="fileCheck" name="fileCheck"/>
+                    </div>
+                   
+                   <div class="login_btn">
+                            <input type="submit" class="login_btn" value="회원가입">
+                        </div>
+                    <div class="option">
+                        <input type="submit" class="cc" value="취소">
+                    </div> 
+                    </form>
+            </div>
+        </div>
+ 
+    </div>
+
+<div id="footer" align="center"><br>업체명: Salad82 | 사업자번호:123-45-6789<br>
+                        주소: 인천 남구 학익동 663-1 태승빌딩 | 전화번호:032-123-4567<br>
+                        Copyrights(c) ㈜Salad82 2015 all rights reserved.</div>
 
 </body>
 <script>
-function validForm(passForm) { 
-	  if (passForm.s_pwd.value == "") { 
-	    alert("패스워드를 입력하세요.");
-	    passForm.s_pwd.focus();
-	    return false;
-	  } 
-	  if (passForm.s_pwd.value != passForm.s_pwdchek.value) { 
-	    alert("패스워드가 맞지 않습니다. 확인 후 다시입력하세요");
-	    passForm.s_pwd.focus();
-	    passForm.s_pwd.select();
-	    return false;
-	  } 
-	  return true;
-	}
 
-function goLoginForm() {
-    location.href="loginform.jsp";
-}
-function add(){ 
-
-    var row = document.createElement("TR") 
-    var td1 = document.createElement("TD") 
-    td1.appendChild(document.createTextNode("topping")) 
-    var td2 = document.createElement("TD") 
-    td2.appendChild (document.createTextNode("price")) 
-    row.appendChild(td1); 
-    row.appendChild(td2); 
-  } 
-
-function AddFile(){
-	var objTbl = document.all["tblAttFiles"];
-	var objRow = objTbl.insertRow();
-	var objCell = objRow.insertCell();
-		objCell.innerHTML =
-		  "<img src=http://www.blueb.co.kr/SRC/javascript/image/no_image.gif width=90 align=absbottom>\n" +
-		  "<input type=file onChange='CkImageVal()' name=AttFile[] size=40>";
-	document.recalc();
-}
-
-function CkImageVal() {
-	var oInput = event.srcElement;
-	var fname = oInput.value;
-		if((/(.jpg|.jpeg|.gif|.png)$/i).test(fname))
-		  oInput.parentElement.children[0].src = fname;
-	else
-	  alert('이미지는 gif, jpg, png 파일만 가능합니다.');
-}
 </script>
 </html>

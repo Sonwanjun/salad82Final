@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.icia.salad82final.bean.Customer;
+import com.icia.salad82final.bean.Seller;
 import com.icia.salad82final.service.CustomerManagement;
+import com.icia.salad82final.service.SellerManagement;
 
 @Controller
 public class HomeController {
@@ -19,6 +21,9 @@ public class HomeController {
 	
 	@Autowired
 	private CustomerManagement cm;
+	
+	@Autowired
+	private SellerManagement sm;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
@@ -53,6 +58,11 @@ public class HomeController {
 	public ModelAndView customerInsert(Customer ct) {
 		mav=cm.customerInsert(ct);
 		System.out.println("왓더퍽");
+		return mav;
+	}
+	@RequestMapping(value = "/sellerInsert")
+	public ModelAndView sellerInsert(Seller se) {
+		mav=sm.sellerInsert(se);
 		return mav;
 	}
 }
