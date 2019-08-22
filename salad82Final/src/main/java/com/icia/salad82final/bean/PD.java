@@ -2,6 +2,13 @@ package com.icia.salad82final.bean;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Alias("product")
+@Getter @Setter
 public class PD {
 
 	private int p_code;
