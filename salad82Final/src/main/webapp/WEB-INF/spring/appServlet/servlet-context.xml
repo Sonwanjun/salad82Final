@@ -87,6 +87,13 @@
 		<beans:property name="mapperInterface"
 			value="com.icia.salad82final.dao.BoardDao" />
 	</beans:bean>
+	<beans:bean id="sDao"
+		class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<beans:property name="sqlSessionFactory"
+			ref="sqlSessionFactory" />
+		<beans:property name="mapperInterface"
+			value="com.icia.salad82final.dao.SellerDao" />
+	</beans:bean>
 
 <!--
 	id="multipartResolver" 변경하거나 생략하면 안됨

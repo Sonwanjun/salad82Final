@@ -13,5 +13,5 @@ import com.icia.salad82final.bean.Seller;
 
 public interface SellerDao {
 
-	boolean sellerInsert(Seller se);
+	boolean sellerInsert(Seller st);
 }
