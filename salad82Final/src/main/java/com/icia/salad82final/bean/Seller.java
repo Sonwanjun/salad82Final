@@ -3,7 +3,6 @@ package com.icia.salad82final.bean;
 import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
-import org.springframework.web.servlet.ModelAndView;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,11 +22,5 @@ public class Seller {
 	private Date s_date;
 	
 	private String ronum;
-
-	public ModelAndView sellerInsert(Seller sm) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 }

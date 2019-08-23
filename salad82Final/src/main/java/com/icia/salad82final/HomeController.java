@@ -19,7 +19,11 @@ public class HomeController {
 	
 	ModelAndView mav;
 	
-
+	@Autowired
+	private CustomerManagement cm;
+	
+	@Autowired
+	private SellerManagement sm;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
@@ -38,11 +42,9 @@ public class HomeController {
 		return "loginform";
 	}
 	@RequestMapping(value = "/sJoinForm", method = RequestMethod.GET)
-	public ModelAndView sJoinForm(Seller se) {	
-		mav = new ModelAndView();
-		mav.setViewName("sJoinForm");
+	public String sJoinForm(Locale locale, Model model) {	
 		
-		return mav;
+		return "sJoinForm";
 	}
 	@RequestMapping(value = "/cJoinForm")
 	public ModelAndView cJoinForm(Customer ct) {	
@@ -51,4 +53,10 @@ public class HomeController {
 		return mav;
 	}
 	
+	
+	@RequestMapping(value = "/sellerInsert")
+	public ModelAndView sellerInsert(Seller se) {
+		mav=sm.sellerInsert(se);
+		return mav;
+	}
 }

@@ -3,8 +3,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.icia.salad82final.dao.SellerDao">
-	<insert id="sellerInsert" parameterType="seller">
+<mapper namespace="com.icia.salad82final.dao.AdminDao">
+	<insert id="customerInsert" parameterType="customer">
 		INSERT INTO S VALUES(#{s_id}, default, #{s_pwd}, #{s_num}, #{s_address}, #{s_phone}, #{s_email}, default)
 	</insert>
 	
