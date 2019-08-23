@@ -179,9 +179,17 @@ td {
 		</div>
 	</div>
 	<div class="searchRecipe">
-		<input type="text" placeholder="검색어 입력" name="textfield"
-			style="text-align: center; width: 1200px; letter-spacing: 10px; font-size: 18px">
-		<button>검색</button>
+		<p Style="text-align:center">${map.count}개의게시물이있습니다.</p>
+		<p Style="text-align:center">
+			<select name="searchType" id="select_searchType">
+				<option value="CONTENTS" selected="selected">내용</option>
+				<option value="BNUM">글번호</option>
+				<!--<option value="P_CODE">품목코드</option>-->
+			</select> 
+			<input type="text" name="textfield" id="searchWord" style="width:1000px"> 
+			<a href="javascript:fn_searchList()" class="btn">검색</a>
+		</p>
+
 	</div>
 	<br>
 	<div id="boardlistsTitle">
@@ -207,7 +215,7 @@ td {
 	</div>
 	<br>
 	<br>
-	
+
 	<br>
 	<br>
 
@@ -216,5 +224,14 @@ td {
 		태승빌딩 | 전화번호:032-123-4567<br> Copyrights(c) ㈜Salad82 2015 all <br>
 	</div>
 </body>
+
+<script>
+/*function fn_searchList(){
+	var searchType = $("#searchType option:selected").val();
+	var searchWord = $("#searchWord").val();
+	
+	window.location.href="/openBoardResult"?curPage=1&searchType
+}*/
+</script>
 
 </html>

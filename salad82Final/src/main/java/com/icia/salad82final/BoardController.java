@@ -23,6 +23,7 @@ public class BoardController {
 	public ModelAndView getBoardList(Integer pNum) {
 		
 		mav = bm.getBoardList(pNum);
+		
 		return mav;
 		
 	}

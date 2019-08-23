@@ -1,9 +1,13 @@
 package com.icia.salad82final.service;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.icia.salad82final.bean.Board;
@@ -46,6 +50,11 @@ public class BoardManagement {
 
 		return paging.makeHtmlPaging();
 	}
+
+/*	public ModelAndView OpenBoardList(HttpServletRequest request,Map<String,Object> commandMap, 
+			@RequestParam(value="curPage",defaultValue="1")int curPage,
+			@RequestParam(value="searchType,defaultValue=")
+	*/	
 }
 
 
