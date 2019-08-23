@@ -29,7 +29,6 @@ public class HomeController {
 	public String home() {
 		
 		return "redirect:adminPageMain";
-		
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -54,12 +53,7 @@ public class HomeController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/customerInsert", method = RequestMethod.POST)
-	public ModelAndView customerInsert(Customer ct) {
-		mav=cm.customerInsert(ct);
-		System.out.println("왓더퍽");
-		return mav;
-	}
+	
 	@RequestMapping(value = "/sellerInsert")
 	public ModelAndView sellerInsert(Seller se) {
 		mav=sm.sellerInsert(se);

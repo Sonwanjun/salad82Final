@@ -6,12 +6,14 @@
 <mapper namespace="com.icia.salad82final.dao.BoardDao">
 	<select id="getBoardList" parameterType="int" resultType="board">
 		<![CDATA[ 
-		SELECT * FROM BOARD
-		WHERE B_NUM>=#{pageNum}*5-4 AND B_NUM<=#{pageNum}*5
+		SELECT * FROM BOARD WHERE B_NUM>=#{pageNum}*5-4 AND B_NUM<=#{pageNum}*5
 		]]>
 	</select>
 	<select id="getBoardCount" resultType="int">
-		SELECT COUNT(*) FROM
-		BOARD
+		SELECT COUNT(*) FROM BLIST
+	</select>
+	<select id="getContents" parameterType="int" resultType="board">
+		SELECT *
+		FROM BOARD WHERE BNUM=#{b_Num}
 	</select>
 </mapper>
