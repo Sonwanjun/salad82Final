@@ -15,7 +15,6 @@ import com.icia.salad82final.dao.BoardDao;
 import com.icia.salad82final.userClass.Paging;
 
 @Service
-
 public class BoardManagement {
 	@Autowired
 	BoardDao bDao;
