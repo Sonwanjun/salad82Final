@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.icia.salad82final.service.AdminManagement;
 
 @Controller
@@ -42,14 +43,20 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/selledProdInfo")
-	public ModelAndView selledProdInfo(String s_id) { 
+	public ModelAndView selledProdInfo(String s_id, Integer pNum) { 
 		//[ajax로 전달하는 js객체의 이름부분=전달받는 메소드의 인수 이름]이어야 값이 제대로 받아짐 
 		
 		System.out.println("s_id = " + s_id);
 		
-		mav = am.getSelledProdInfo(s_id); //만들어야한다
+		mav = am.getSelledProdInfo(s_id, pNum); //만들어야한다
 		return mav;
-		
+		//TODO 확인용
+	}
+	
+	@RequestMapping(value = "/regProdInfo")
+	public ModelAndView getRegProdInfo(String s_id, Integer pNum) {
+		mav = am.getRegProdInfo(s_id, pNum);
+		return mav;
 	}
 
 }
