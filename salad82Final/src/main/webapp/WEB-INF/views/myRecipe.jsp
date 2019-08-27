@@ -179,9 +179,17 @@ td {
 		</div>
 	</div>
 	<div class="searchRecipe">
-		<input type="text" placeholder="검색어 입력" name="textfield"
-			style="text-align: center; width: 1200px; letter-spacing: 10px; font-size: 18px">
-		<button>검색</button>
+		<p Style="text-align:center">${map.count}개의게시물이있습니다.</p>
+		<p Style="text-align:center">
+			<select name="searchType" id="select_searchType">
+				<option value="CONTENTS" selected="selected">내용</option>
+				<option value="BNUM">글번호</option>
+				<!--<option value="P_CODE">품목코드</option>-->
+			</select> 
+			<input type="text" name="textfield" id="searchWord" style="width:1000px"> 
+			<a href="javascript:fn_searchList()" class="btn">검색</a>
+		</p>
+
 	</div>
 	<br>
 	<div id="boardlistsTitle">
@@ -189,34 +197,25 @@ td {
 	</div>
 	<div id="boardlist">
 		<table>
-			<tr>
-				<td>글번호</td>
-				<td>레시피 제목</td>
-				<td colspan="2">작성일</td>
-				<td rowspan="3">이미지파일</td>
-			</tr>
-			<tr>
-				<td>재료</td>
-				<td height="130px">글 내용요요용요용</td>
-				<td>작성자</td>
-				<td>조회수</td>
-			</tr>
-			<c:forEach var="board" items="${board}">
+			<c:forEach var="board" items="${bList}">
 				<tr>
-					<td>${b_num}</td>
-					<td>레시피 제목</td>
-					<td colspan="2">${b_date}</td>
-					<td rowspan="3">${b_img}</td>
+					<td>${board.b_num}</td>
+					<td width="500px">레시피 제목</td>
+					<td colspan="1">${board.c_id}</td>
+					<td>작성일:${board.b_date}</td>
+					<td colspan="1">조회수:${board.b_views}</td>
 				</tr>
 				<tr>
-					<td>재료</td>
-					<td height="130px">${b_contents}</td>
-					<td>${c_id}</td>
-					<td>조회수</td>
+					<td height="130px">재료</td>
+					<td colspan="3">내용:${board.b_contents}</td>
+					<td>이미지지지지</td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
+	<br>
+	<br>
+
 	<br>
 	<br>
 
@@ -225,5 +224,14 @@ td {
 		태승빌딩 | 전화번호:032-123-4567<br> Copyrights(c) ㈜Salad82 2015 all <br>
 	</div>
 </body>
+
+<script>
+/*function fn_searchList(){
+	var searchType = $("#searchType option:selected").val();
+	var searchWord = $("#searchWord").val();
+	
+	window.location.href="/openBoardResult"?curPage=1&searchType
+}*/
+</script>
 
 </html>

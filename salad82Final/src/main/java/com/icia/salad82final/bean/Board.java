@@ -16,5 +16,6 @@ public class Board {
 	private String b_date;
 	private String b_imgname;
 	private String b_imgpath;
+	private String b_views;
 
 }

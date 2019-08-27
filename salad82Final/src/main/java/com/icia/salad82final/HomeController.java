@@ -10,21 +10,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.icia.salad82final.bean.Customer;
+import com.icia.salad82final.bean.Seller;
 import com.icia.salad82final.service.CustomerManagement;
+import com.icia.salad82final.service.SellerManagement;
 
 @Controller
 public class HomeController {
 	
 	ModelAndView mav;
 	
-	@Autowired
-	private CustomerManagement cm;
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		
 		return "redirect:adminPageMain";
-		
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -38,9 +36,10 @@ public class HomeController {
 		return "loginform";
 	}
 	@RequestMapping(value = "/sJoinForm", method = RequestMethod.GET)
-	public String sJoinForm(Locale locale, Model model) {	
-		
-		return "sJoinForm";
+	public ModelAndView sJoinForm(Seller st) {	
+		mav = new ModelAndView();
+		mav.setViewName("sJoinForm");
+		return mav;
 	}
 	@RequestMapping(value = "/cJoinForm")
 	public ModelAndView cJoinForm(Customer ct) {	
@@ -49,10 +48,11 @@ public class HomeController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/customerInsert", method = RequestMethod.POST)
-	public ModelAndView customerInsert(Customer ct) {
-		mav=cm.customerInsert(ct);
-		System.out.println("왓더퍽");
-		return mav;
-	}
+	  @RequestMapping(value = "/home", method = RequestMethod.GET)
+	  public String home(Locale locale, Model model) {
+	  
+	  return "home"; 
+	  }
+	
+
 }

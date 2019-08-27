@@ -10,5 +10,4 @@ public interface BoardDao {
 
 	int getBoardCount();
 
-
 }
