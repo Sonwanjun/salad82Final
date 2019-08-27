@@ -43,40 +43,46 @@
 		background-color: #f553e7;
 	}
 
-	.selledProd,#totals{
+	.regProd,#totals{
 		border : 3px solid purple;
 		width : 900px; /* height 속성은 판매기록의 출력 갯수에 따라 유동적으로 바뀔 예정. 여기서는 설정X */
 		margin : 0 auto;
 	}
-	.selledProd th{
+	.regProd th{
 		background-color : gray;
 	}
-	.selledProd th:nth-child(1){
-		width : 250px;
-	}
-	.selledProd th:nth-child(2){
-		width : 350px;
-	}
-	.selledProd th:nth-child(3){
+	.regProd th:nth-child(1){
 		width : 100px;
 	}
-	.selledProd th:nth-child(4){
+	.regProd th:nth-child(2){
 		width : 200px;
 	}
-	.selledProd td{
+	.regProd th:nth-child(3){
+		width : 350px;
+	}
+	.regProd th:nth-child(4){
+		width : 100px;
+	}
+	.regProd th:nth-child(5){
+		width : 150px;
+	}
+	.regProd td{
 		background-color : #9fc0f5;
 	}
-	.selledProd td:nth-child(1) {
-		width : 250px;
-	}
-	.selledProd td:nth-child(2) {
-		width : 350px;
-	}
-	.selledProd td:nth-child(3) {
+	.regProd td:nth-child(1){
 		width : 100px;
 	}
-	.selledProd td:nth-child(4) {
+	.regProd td:nth-child(2) {
 		width : 200px;
+	}
+	.regProd td:nth-child(3) {
+		width : 350px;
+	}
+	.regProd td:nth-child(4) {
+		width : 100px;
+	}
+	.regProd td:nth-child(5) {
+		width : 150px;
 	}
 	#totals td{
 		background-color : green;
@@ -109,56 +115,39 @@
 
 	<table id="sDetailTab">		<!-- 상세페이지 내의 탭 -->
 		<tr>
-			<td>판매기록</td>
-			<td onclick="regProdInfo('${infoDetail.s_id}','1')">등록된 품목</td>
+			<td onclick="showDetail('${infoDetail.s_id}', 'S')">판매기록</td>
+			<td>등록된 품목</td>
 		</tr>
 	</table>
 	
-	<table class="selledProd">		<!-- 해당 사업자의 판매기록이 출력될 테이블 -->
+	<table class="regProd">		<!-- 해당 사업자의 등록품목이 출력될 테이블 -->
 		<tr>
-			<th>판매일</th>
-			<th>판매한 품목</th>
-			<th>판매수량</th>
-			<th>판매액</th>
+			<th>타입</th>
+			<th>등록일</th>
+			<th>품목명</th>
+			<th>재고량</th>
+			<th>단가</th>
 		</tr>
 	</table>
 		
-	<table class="selledProd" id="pList">
+	<table class="regProd" id="pList">
 		<c:forEach var="pd" items="${list }">
 			<tr>
-				<td>${pd.O_DATE }</td>
-				<td>${pd.P_NAME }</td>
-				<td>${pd.OD_AMOUNT }</td>
-				<td>${pd.PRICE }</td>
+				<td>${pd.p_type }</td>
+				<td>${pd.p_date }</td>
+				<td>${pd.p_name }</td>
+				<td>${pd.p_remain }</td>
+				<td>${pd.p_price }</td>
 			</tr>
 		</c:forEach>
 	</table>
 		
 	<table id="totals">
 		<tr>
-			<td colspan="2" width="600px">총 판매건수 : ${totalCount }</td>	<!-- 해당 판매자의 전체 판매 건수 -->
-			<td colspan="2" width="300px">총 판매액 : ${totalIncome }</td>		<!-- 해당 판매자의 전체 판매액 -->
+			<td colspan="5" width="900px">총 품목 가짓수 : ${totalCount }</td>	<!-- 해당 판매자의 등록 품목 수 -->
 		</tr>
 	</table>
 	
 	<div align="center">${paging }</div>
 </body>
-<script>
-	function regProdInfo(s_id, pNum){
-		alert('regProdInfo 실행');
-		$.ajax({
-			type : 'get',
-			url : 'regProdInfo',
-			data : {s_id:s_id, pNum:pNum},
-			dataType : 'html',
-			success : function(data){
-				alert('regProdInfo 성공');
-				$('#ajaxArea').html(data);
-			},
-			error : function(error){
-				alert('에러가 한가득');
-			}
-		});
-	};
-</script>
 </html>

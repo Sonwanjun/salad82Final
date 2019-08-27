@@ -7,7 +7,6 @@ import lombok.Setter;
 
 @Alias("board")
 @Getter @Setter
-
 public class Board {
 	
 	private String b_num;
