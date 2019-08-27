@@ -4,58 +4,22 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.icia.salad82final.dao.AdminDao">
-	<select id="getSellerInfo" parameterType="int"
-		resultType="seller">
+	<select id="getSellerInfo" parameterType="int" resultType="seller">
 		<![CDATA[ 
 		SELECT * FROM S_SHORT 
 		WHERE RONUM>=#{pageNum}*5-4 AND RONUM<=#{pageNum}*5
 		]]>
 	</select>
-
-	<select id="getCustomerInfo" parameterType="int"
-		resultType="customer">
+	
+	<select id="getCustomerInfo" parameterType="int" resultType="customer">
 		<![CDATA[ 
 		SELECT * FROM C_SHORT 
 		WHERE RONUM>=#{pageNum}*5-4 AND RONUM<=#{pageNum}*5
 		]]>
 	</select>
-
-	<select id="getInfoCount" parameterType="String"
-		resultType="int">
+	
+	<select id="getInfoCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM ${value} <!-- string을 인수로 받아서 쓸때는 받은 변수명이 아닌 'value'로 통일해서 써야 한다 -->
 	</select>
-
-	<select id="getSellerInfoDetail" parameterType="String"
-		resultType="seller">
-		SELECT * FROM S_DETAIL WHERE S_ID=#{value}
-	</select>
-
-	<select id="getSelledProdInfo" parameterType="HashMap" resultType="HashMap">
-			SELECT *
-			FROM (SELECT ROWNUM AS RONUM, S_ID, O_DATE, P_NAME, OD_AMOUNT, PRICE FROM S_DETAIL_TEMP WHERE S_ID=#{s_id})
-		<![CDATA[
-			WHERE RONUM>=#{pageNum}*5-4 AND RONUM<=#{pageNum}*5
-		]]>
-	</select>
 	
-	<select id="getIncomesBySeller" parameterType="String" resultType="int"><!-- 특정 판매자의 전체 판매수익 리스트를 가져옴 -->
-		SELECT PRICE FROM S_DETAIL_PROD WHERE S_ID=#{value}
-	</select>
-
-	<select id="getCountBySid" parameterType="HashMap" resultType="int"><!-- 특정 테이블에서 특정 판매자의 데이터 수를 세어옴 -->
-		<![CDATA[
-			SELECT COUNT(*) FROM ${viewName} WHERE S_ID=#{id}
-		]]>
-	</select>
-	
-	<select id="getRegProdInfo" parameterType="HashMap" resultType="pd">
-		<![CDATA[
-			SELECT P_TYPE, P_DATE, P_NAME, P_REMAIN, P_PRICE
-			FROM (SELECT ROWNUM AS RONUM, S_ID, P_TYPE, P_DATE, P_NAME, P_REMAIN, P_PRICE 
-				  FROM REG_PROD
-				  WHERE S_ID=#{s_id})
-			WHERE RONUM>=#{pageNum}*5-4 AND RONUM<=#{pageNum}*5
-		]]>
-	</select>
-
-</mapper><!-- 훑 -->
+</mapper>

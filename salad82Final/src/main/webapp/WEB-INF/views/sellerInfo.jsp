@@ -54,7 +54,7 @@
 }
 </style>
 </head>
-<body><!-- 훑 -->
+<body>
 	<table id="scTab">
 		<tr>
 			<td>판매자</td>
@@ -86,6 +86,30 @@
 	
 </body>
 <script>
+	function showDetail(s_id, m_type){
+		var url;
+		alert('빠밤');
+		if(m_type == 'S'){
+			url = "selledProdInfo";
+		} else if(m_type == 'C') { //문자열 비교에 ==쓰는게 맞나?
+			url = "purcProdInfo";
+		}
+		
+		$.ajax({
+			type : 'get',
+			url : url,
+			data : {s_id : s_id}, //이름 부분에는 따옴표를 붙여도 되고 안붙여도 됨
+			dataType : 'html',
+			success : function(data){
+				alert('성공');
+				$('#ajaxArea').html(data);
+			},
+			error : function(error){
+				console.log(error);
+				alert('에러요!!!!!!!!!');
+			}
+		});
+	};
 
 	function consumerInfo(pNum){
 		$.ajax({

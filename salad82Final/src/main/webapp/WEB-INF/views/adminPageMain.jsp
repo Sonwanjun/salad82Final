@@ -107,7 +107,7 @@ body {
 
 </style>
 </head>
-<body><!-- 훑 -->
+<body>
 	<div id="wrapper">
 		<div id="header">
 			<p>로그인/로그아웃&nbsp;&nbsp;회원가입/마이페이지&nbsp;&nbsp;고객센터</p>
@@ -168,30 +168,5 @@ body {
 		});
 	};
 	sellerInfo();
-	
-	function showDetail(s_id, m_type, pNum){
-		var url;
-		alert('빠밤');
-		if(m_type == 'S'){
-			url = "selledProdInfo";
-		} else if(m_type == 'C') { //문자열 비교에 ==쓰는게 맞나?
-			url = "purcProdInfo";
-		}
-		
-		$.ajax({
-			type : 'get',
-			url : url,
-			data : {s_id:s_id, pNum:pNum}, //이름 부분에는 따옴표를 붙여도 되고 안붙여도 됨
-			dataType : 'html',
-			success : function(data){
-				alert('성공');
-				$('#ajaxArea').html(data);
-			},
-			error : function(error){
-				console.log(error);
-				alert('에러요!!!!!!!!!');
-			}
-		});
-	};
 </script>
 </html>

@@ -6,10 +6,9 @@ import org.apache.ibatis.type.Alias;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Alias("seller")
-@Getter @Setter @ToString(exclude = {"m_type", "s_pwd", "ronum"})
+@Getter @Setter
 public class Seller {
 	
 	private String s_id;
