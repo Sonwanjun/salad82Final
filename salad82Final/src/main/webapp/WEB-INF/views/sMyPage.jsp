@@ -257,11 +257,4 @@ function goHomeForm() {
 	
 </script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script>
-$("#leftside-navigation .sub-menu > a").click(function(e) {
-  $("#leftside-navigation ul ul").slideUp(), $(this).next().is(":visible") || $(this).next().slideDown(),
-  e.stopPropagation()
-})
-</script>
 </html>

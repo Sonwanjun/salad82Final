@@ -1,5 +1,7 @@
 package com.icia.salad82final.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,4 +39,10 @@ public class CustomerManagement {
 		      mav.setViewName(view);
 		      return mav;
 		   }
+
+	public Customer idCheck(String c_id) throws Exception{
+		return cDao.idCheck(c_id);
+	}
+
+	
 }

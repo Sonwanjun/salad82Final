@@ -34,8 +34,10 @@ text-align:right;
    background: #009900;
    font-size: 16;
 }
-   
 </style>
+
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+
 </head>
 <body>
 <p>로그인/로그아웃    회원가입/마이페이지    고객센터</p>
@@ -53,10 +55,12 @@ text-align:right;
 	<tr>
  	<td>아이디 </td>
 	<td>  <!-- <input type="text" name="c_id" id="아이디"> -->
-    <input type="text" class="form-control" name="c_id" id="아이디"  required>
-    <div class="check_font" id="id_check"></div>
+    <input type="text" class="form-control" name="c_id" id="c_id"  required>
+    <button type="button" class="idCheck">중복 확인</button>
 	</td>
-		
+	</tr>
+	<tr>
+	<td><p class ="result"><span class="msg">아이디 확인해주세요</span></p></td>
 	</tr>
 	<tr>
 		<td>비밀번호 </td>
@@ -81,12 +85,16 @@ text-align:right;
 	</tr>
 	<tr>
 		<td colspan="5" class="subject">
-		<button class="btn btn-primary px-3" id="reg_submit">
-		<i class="fa fa-heart pr-2" aria-hidden="true"></i>가입하기
-		</button>
-		<input type="button" value="취소" onclick="goLoginForm()">
 		</td>
 	</tr>
+	<tr>
+      <td colspan="5" class="subject">
+      <button type="submit" class="btn btn-primary px-3" id="submit" disabled="disabled">
+      <i class="fa fa-heart pr-2" aria-hidden="true"></i>가입하기
+      </button>
+      <input type="button" value="취소" onclick="goLoginForm()">
+      </td>
+   </tr>
 </table>
 </form>
 <div id="footer" align="center"><br>업체명: Salad82 | 사업자번호:123-45-6789<br>
@@ -114,8 +122,37 @@ function check(){
 	return true; //성공
 }
 
-	
+$(".idCheck").click(function(){
+ 
+ var query = {c_id : $("#c_id").val()};
+ 
+ $.ajax({
+  url : "/salad82final/idCheck",
+  type : "post",
+  data : query,
+  success : function(data) {
+  
+   if(data == 1) {
+    $(".result .msg").text("사용 불가");
+    $(".result .msg").attr("style", "color:#f00"); 
+    
+    $("#submit").attr("disabled", "disabled");
+   } else {
+    $(".result .msg").text("사용 가능");
+    $(".result .msg").attr("style", "color:#00f");
+    
+    $("#submit").removeAttr("disabled");
+   }
+  }
+ });  // ajax 끝
+});
 
-
+$("#c_id").keyup(function(){
+	 $(".result .msg").text("아이디를 확인해주십시오.");
+	 $(".result .msg").attr("style", "color:#000");
+	 
+	 $("#submit").attr("disabled", "disabled");
+	 
+	});
 </script>
 </html>

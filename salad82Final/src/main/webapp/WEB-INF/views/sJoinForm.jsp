@@ -56,17 +56,19 @@ h2{
             <div class="join">
                 <form name="signupForm" id="signupForm" method="post" action="sellerInsert">
                     <div class="input">
-                        <input type="text" class="box" placeholder="아이디" name="s_id"
+                        <input type="text" class="box" placeholder="아이디" id="s_id" name="s_id"
                             required>
                     </div>
+                    
                     <div class="input">
                         <input type="password" class="box" placeholder="비밀번호"
-                            name="s_pwd" required>
+                            id="s_pwd" name="s_pwd" required>
                     </div>
                     <div class="input">
                         <input type="password" class="box" placeholder="비밀번호 확인"
-                            name="passwordConfirm" required>
+                            id="passwordConfirm" name="passwordConfirm" required>
                     </div>
+
                     <div class="input">
                         <input type="text" class="box" placeholder="업체명" name="s_name"
                             required>
@@ -87,17 +89,17 @@ h2{
                         <input type="text" class="box" placeholder="주소(인천 미추홀구 250번길 아이유1차 102동 1201호)" name="s_address" style="width:400px"
                             required>
                     </div>
-                   <div class="input">
+                   <!-- 나중에 사진첨부 <div class="input">
                  		(내부사진등록해주세요.)
                             <input type="file" name="files" id="files" multiple="multiple" onchange="fileChk(this)"/>
 							<input type="hidden" value="0" id="fileCheck" name="fileCheck"/>
-                    </div>
+                    </div> -->
                    
                    <div class="login_btn">
                             <input type="submit" class="login_btn" value="회원가입">
                         </div>
                     <div class="option">
-                        <input type="submit" class="cc" value="취소">
+                        <input type="submit" class="cc" id="rs" value="취소">
                     </div> 
                     </form>
             </div>
@@ -113,4 +115,5 @@ h2{
 <script>
 
 </script>
+
 </html>

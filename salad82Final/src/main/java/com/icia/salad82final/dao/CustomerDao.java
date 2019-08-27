@@ -7,9 +7,5 @@ public interface CustomerDao {
 
 	boolean customerInsert(Customer ct);
 
-
-
-
-
-
+	public Customer idCheck(String c_id) throws Exception;	
 }
