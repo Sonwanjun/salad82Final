@@ -57,23 +57,5 @@
 	<select id="getCustomerInfoDetail" parameterType="String" resultType="customer">
 		SELECT * FROM C_DETAIL WHERE C_ID=#{value}
 	</select>
-	
-	<select id="getPurcProdInfo" parameterType="HashMap" resultType="order">
-		<![CDATA[
-			SELECT O_DATE, O_NUM, P_NAME, OD_AMOUNT, PRICE
-			FROM (SELECT ROWNUM AS RONUM, O_DATE, O_NUM, P_NAME, OD_AMOUNT, PRICE
-				  FROM C_PURC_PROD
-				  WHERE C_ID=#{id})
-			WHERE RONUM>=#{pageNum}*5-4 AND RONUM<=#{pageNum}*5
-		]]>
-	</select>
-	
-	<select id="getCustomerTotals" parameterType="String" resultType="int">
-		SELECT O_TOTAL FROM O WHERE C_ID=#{value}
-	</select>
-	
-	<select id="getCustDetailTotalCount" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM C_PURC_PROD WHERE C_ID=#{value}
-	</select>
 
 </mapper><!-- 훑 -->

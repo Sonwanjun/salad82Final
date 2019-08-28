@@ -1,5 +1,7 @@
 package com.icia.salad82final.bean;
 
+import java.util.Date;
+
 import org.apache.ibatis.type.Alias;
 
 import lombok.Getter;

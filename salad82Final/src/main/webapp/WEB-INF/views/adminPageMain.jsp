@@ -169,22 +169,19 @@ body {
 	};
 	sellerInfo();
 	
-	function showDetail(id, m_type, pNum){
+	function showDetail(s_id, m_type, pNum){
 		var url;
-		var mData;
 		alert('빠밤');
 		if(m_type == 'S'){
 			url = "selledProdInfo";
-			mData = {s_id:id, pNum:pNum};
 		} else if(m_type == 'C') { //문자열 비교에 ==쓰는게 맞나?
 			url = "purcProdInfo";
-			mData = {c_id:id, pNum:pNum};
 		}
 		
 		$.ajax({
 			type : 'get',
 			url : url,
-			data : mData, //이름 부분에는 따옴표를 붙여도 되고 안붙여도 됨
+			data : {s_id:s_id, pNum:pNum}, //이름 부분에는 따옴표를 붙여도 되고 안붙여도 됨
 			dataType : 'html',
 			success : function(data){
 				alert('성공');
