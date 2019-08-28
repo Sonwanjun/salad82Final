@@ -50,12 +50,17 @@ public class AdminController {
 		
 		mav = am.getSelledProdInfo(s_id, pNum); //만들어야한다
 		return mav;
-		//TODO 확인용
 	}
 	
 	@RequestMapping(value = "/regProdInfo")
 	public ModelAndView getRegProdInfo(String s_id, Integer pNum) {
 		mav = am.getRegProdInfo(s_id, pNum);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/purcProdInfo")
+	public ModelAndView getPurcProdInfo(String s_id, Integer pNum) {
+		mav = am.getPurcProdInfo(s_id, pNum);
 		return mav;
 	}
 

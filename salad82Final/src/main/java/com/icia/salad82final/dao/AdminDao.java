@@ -1,6 +1,5 @@
 package com.icia.salad82final.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,5 +24,6 @@ public interface AdminDao {
 	List<PD> getRegProdInfo(HashMap<String, Object> param);
 
 	List<Integer> getIncomesBySeller(String s_id);
-	//TODO 확인용
+
+	Customer getCustomerInfoDetail(String s_id);
 }

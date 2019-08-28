@@ -12,7 +12,7 @@ import com.icia.salad82final.bean.Customer;
 import com.icia.salad82final.bean.PD;
 import com.icia.salad82final.bean.Seller;
 import com.icia.salad82final.dao.AdminDao;
-import com.icia.salad82final.userClass.Paging;
+import com.icia.salad82final.userClass.PagingForAjax;
 
 @Service
 public class AdminManagement {
@@ -38,7 +38,7 @@ public class AdminManagement {
 			view = "home";
 		}
 		mav.setViewName(view);
-		return mav;//TODO 확인용
+		return mav;
 	}
 
 	public ModelAndView getCustomerInfo(Integer pNum) {
@@ -65,14 +65,14 @@ public class AdminManagement {
 		int maxNum = aDao.getInfoCount(viewName); // 총 글의 갯수
 		int listCount = 5;
 		int pageCount = 2; // 페이지 선택숫자 출력갯수
-		Paging paging = new Paging(maxNum, pNum, listCount, pageCount, infoName);
+		PagingForAjax paging = new PagingForAjax(maxNum, pNum, listCount, pageCount, infoName);
 		return paging.makeHtmlPaging();
 	}
 	private String getPaging(int pNum, String infoName, int maxnum) {
 		int maxNum = maxnum; // 총 글의 갯수
 		int listCount = 5;
 		int pageCount = 2; // 페이지 선택숫자 출력갯수
-		Paging paging = new Paging(maxNum, pNum, listCount, pageCount, infoName);
+		PagingForAjax paging = new PagingForAjax(maxNum, pNum, listCount, pageCount, infoName);
 		return paging.makeHtmlPaging();
 	}
 
@@ -158,5 +158,16 @@ public class AdminManagement {
 		mav.setViewName(view);
 		return mav;
 		
+	}
+
+	public ModelAndView getPurcProdInfo(String s_id, Integer pNum) {
+		
+		mav = new ModelAndView();
+		String view = null;
+		
+		Customer infoDetail = aDao.getCustomerInfoDetail(s_id);
+		//TODO 구매자 상세 페이지 완성하기
+		
+		return mav;
 	}
 }

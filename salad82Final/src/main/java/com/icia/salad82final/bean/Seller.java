@@ -19,7 +19,7 @@ public class Seller {
 	private String s_address;
 	private String s_phone;
 	private String s_email;
-	private Date s_date;
+	private String s_date;
 	
 	private String ronum;
 	

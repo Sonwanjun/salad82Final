@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.icia.salad82final.bean.Board;
 import com.icia.salad82final.dao.BoardDao;
-import com.icia.salad82final.userClass.Paging;
+import com.icia.salad82final.userClass.PagingForAjax;
 
 @Service
 public class BoardManagement {
@@ -45,7 +45,7 @@ public class BoardManagement {
 		int listCount = 5;
 		int pageCount = 2; // [1].[2]
 		String boardName = "boardList";// 게시판 url 여러개일때
-		Paging paging = new Paging(maxNum, pNum, listCount, pageCount, boardName);
+		PagingForAjax paging = new PagingForAjax(maxNum, pNum, listCount, pageCount, boardName);
 
 		return paging.makeHtmlPaging();
 	}

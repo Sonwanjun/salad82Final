@@ -143,22 +143,4 @@
 	
 	<div align="center">${paging }</div>
 </body>
-<script>
-	function regProdInfo(s_id, pNum){
-		alert('regProdInfo 실행');
-		$.ajax({
-			type : 'get',
-			url : 'regProdInfo',
-			data : {s_id:s_id, pNum:pNum},
-			dataType : 'html',
-			success : function(data){
-				alert('regProdInfo 성공');
-				$('#ajaxArea').html(data);
-			},
-			error : function(error){
-				alert('에러가 한가득');
-			}
-		});
-	};
-</script>
 </html>
