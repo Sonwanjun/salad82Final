@@ -40,7 +40,7 @@ public class PagingForAjax {
 				: currentGroup * pageCount;
 
 		if (start != 1) {
-			sb.append("<a href='"+infoName+"?pageNum=" + (start -1) + "'>");
+			sb.append("<a href='javascript:"+infoName+"(" + (start -1) + ")'>");
 			sb.append("[이전]");
 			sb.append("</a>");
 		}
@@ -61,7 +61,7 @@ public class PagingForAjax {
 			}
 		}
 		if (end != totalPage) {
-			sb.append("<a href='"+infoName+"?pageNum=" + (end + 1) + "'>");
+			sb.append("<a href='javascript:"+infoName+"(" + (end + 1) + ")'>");
 			sb.append("[다음]");
 			sb.append("</a>");
 		}

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.icia.salad82final.bean.Customer;
+import com.icia.salad82final.bean.Order;
 import com.icia.salad82final.bean.PD;
 import com.icia.salad82final.bean.Seller;
 import com.icia.salad82final.dao.AdminDao;
@@ -62,14 +63,14 @@ public class AdminManagement {
 	}
 	
 	private String getPaging(int pNum, String infoName, String viewName) {
-		int maxNum = aDao.getInfoCount(viewName); // 총 글의 갯수
+		int maxNum = aDao.getInfoCount(viewName); // 총 항목의 갯수
 		int listCount = 5;
 		int pageCount = 2; // 페이지 선택숫자 출력갯수
 		PagingForAjax paging = new PagingForAjax(maxNum, pNum, listCount, pageCount, infoName);
 		return paging.makeHtmlPaging();
 	}
 	private String getPaging(int pNum, String infoName, int maxnum) {
-		int maxNum = maxnum; // 총 글의 갯수
+		int maxNum = maxnum; // 총 항목의 갯수
 		int listCount = 5;
 		int pageCount = 2; // 페이지 선택숫자 출력갯수
 		PagingForAjax paging = new PagingForAjax(maxNum, pNum, listCount, pageCount, infoName);
@@ -133,10 +134,10 @@ public class AdminManagement {
 		param.put("pageNum", pNum);
 		List<PD> list = aDao.getRegProdInfo(param); //해당 판매자가 등록한 품목들의 리스트
 		for(int i=0; i<list.size(); i++) {
-			if(list.get(i).getP_type().equals("P")) {
-				list.get(i).setP_type("시그니처");
+			if(list.get(i).getP_type().equals("P")) { //품목 타입이 시그니처라면
+				list.get(i).setP_type("시그니처"); //타입명을 시그니처로 바꿔서 저장
 			} else {
-				list.get(i).setP_type("DIY 재료");
+				list.get(i).setP_type("DIY 재료"); //타입이 시그니처가 아니라면 무조건 재료
 			}
 		}
 		
@@ -160,13 +161,44 @@ public class AdminManagement {
 		
 	}
 
-	public ModelAndView getPurcProdInfo(String s_id, Integer pNum) {
+	@Transactional
+	public ModelAndView getPurcProdInfo(String c_id, Integer pNum) {
 		
 		mav = new ModelAndView();
 		String view = null;
 		
-		Customer infoDetail = aDao.getCustomerInfoDetail(s_id);
-		//TODO 구매자 상세 페이지 완성하기
+		int pageNum = (pNum == null) ? 1 : pNum;
+		
+		Customer infoDetail = aDao.getCustomerInfoDetail(c_id); //해당 구매자의 상세 정보 가져오기
+		
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("id", c_id);
+		param.put("pageNum", pageNum);
+		List<Order> list = aDao.getPurcProdInfo(param); //해당 구매자, 해당 페이지에 맞는 구매정보 가져오기
+		
+		if(infoDetail!=null && list!=null) {
+			view = "purcProdInfo";
+			
+			mav.addObject("infoDetail", infoDetail);
+			mav.addObject("list", list);
+			
+			List<Integer> totals = aDao.getCustomerTotals(c_id); //특정 구매자의 주문별 주문총액 리스트
+			int totalCount = totals.size(); //구매자의 총 구매건수
+			int totalPurcMoney = 0; //구매자의 총 구매액
+			for(int i=0; i<totalCount; i++) {
+				totalPurcMoney += totals.get(i);
+			}
+			
+			mav.addObject("totalCount", totalCount);
+			mav.addObject("totalPurcMoney", totalPurcMoney);
+			
+			int maxnum = aDao.getCustDetailTotalCount(c_id);
+			mav.addObject("paging", getPaging(pageNum, view, maxnum));
+		} else {
+			view = "home";
+		}
+		
+		mav.setViewName(view);
 		
 		return mav;
 	}

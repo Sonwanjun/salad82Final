@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.icia.salad82final.bean.Customer;
+import com.icia.salad82final.bean.Order;
 import com.icia.salad82final.bean.PD;
 import com.icia.salad82final.bean.Seller;
 
@@ -26,4 +27,10 @@ public interface AdminDao {
 	List<Integer> getIncomesBySeller(String s_id);
 
 	Customer getCustomerInfoDetail(String s_id);
+
+	List<Order> getPurcProdInfo(HashMap<String, Object> param);
+
+	List<Integer> getCustomerTotals(String c_id);
+
+	int getCustDetailTotalCount(String c_id);
 }
