@@ -49,11 +49,15 @@ public class BoardManagement {
 
 		return paging.makeHtmlPaging();
 	}
-
 /*	public ModelAndView OpenBoardList(HttpServletRequest request,Map<String,Object> commandMap, 
 			@RequestParam(value="curPage",defaultValue="1")int curPage,
 			@RequestParam(value="searchType,defaultValue=")
 	*/	
+	
+	public ModelAndView getNotice(Integer pageNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 
 

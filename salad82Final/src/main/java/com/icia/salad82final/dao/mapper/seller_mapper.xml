@@ -8,4 +8,10 @@
 		INSERT INTO S VALUES(#{s_id}, default, #{s_name}, #{s_pwd}, #{s_num}, #{s_address}, #{s_phone}, #{s_email}, default)
 	</insert>
 	
+	<select id="getsMyPage" resultType="seller">
+		 <![CDATA[
+		 SELECT * FROM S VALUES(#{s_id}, default, #{s_name}, #{s_pwd}, #{s_num}, #{s_address}, #{s_phone}, #{s_email}, default)
+		 ]]>
+	</select>
+	
 </mapper>

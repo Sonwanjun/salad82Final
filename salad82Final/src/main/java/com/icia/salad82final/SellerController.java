@@ -35,5 +35,10 @@ public class SellerController {
 		mav=sm.sellerInsert(st);
 		return mav;
 	}
-
+	@RequestMapping(value = "/sellerList", method = RequestMethod.GET)
+	public ModelAndView sellerList(Integer sl) {
+		mav=sm.getsMyPage(sl);
+		
+		return mav;
+	}
 }

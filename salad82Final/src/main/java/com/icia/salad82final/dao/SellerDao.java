@@ -14,4 +14,6 @@ import com.icia.salad82final.bean.Seller;
 public interface SellerDao {
 
 	boolean sellerInsert(Seller st);
+
+	List<Seller> getsMyPage(int sNum);
 }
