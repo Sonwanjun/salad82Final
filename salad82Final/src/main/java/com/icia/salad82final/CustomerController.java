@@ -37,12 +37,7 @@ public class CustomerController {
 		
 		return "cMyPage";
 	}
-	
-	@RequestMapping(value = "/cartHome", method = RequestMethod.GET)  
-	public String cartHome(Locale locale, Model model) {	
-		
-		return "cartHome";
-	}
+
 	
 	// 회원 확인
 	@ResponseBody
