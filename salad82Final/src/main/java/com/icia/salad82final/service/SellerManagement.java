@@ -1,5 +1,9 @@
 package com.icia.salad82final.service;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,6 +17,9 @@ public class SellerManagement {
 	private SellerDao sDao;
 	
 	ModelAndView mav;
+	
+	@Autowired
+	HttpSession session;
 	
 	public ModelAndView sellerInsert(Seller st) {
 		mav = new ModelAndView();
@@ -33,5 +40,26 @@ public class SellerManagement {
 	      mav.setViewName(view);
 	      return mav;
 	   }
+
+	public ModelAndView getsMyPage(Integer sl) {
+		if(session.getAttribute("id")!=null) {
+			mav=new ModelAndView();
+			String view=null;
+			List<Seller> sList=null;
+			
+			int sNum=(sl==null) ? 1 : sl;
+			sList=sDao.getsMyPage(sNum);
+			mav.addObject("sList", sList);
+			if(sList!=null) {
+				view="sMyPage";
+				mav.addObject("sList", sList);
+			}else {
+				view="home";
+			}
+		mav.setViewName(view);	
+		}
+		return mav;
+	}  //sMyPage End
+
 
 }

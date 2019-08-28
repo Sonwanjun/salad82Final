@@ -128,7 +128,7 @@ text-align:right;
 <div id="header">DIY SIG BEST Recipe</div>
 
 <!-- 사이드메뉴바 -->
-<aside class="sidebar">
+<!-- <aside class="sidebar">
   <div id="leftside-navigation" class="nano">
     <ul class="nano-content">
       <li>
@@ -157,77 +157,48 @@ text-align:right;
       </li>
     </ul>
   </div>
-</aside>
+</aside> -->
 
 <!-- DB불러올 정보 -->
-<table align="center">
-	<tr>
-		<td colspan="2" class="subject">판매자 회원가입</td>
+<table id="one_table" style="text-align:center">
+	
+	
+	<tr height="30">
+		<td width="80" bgcolor="orange" align="center">아이디</td>
+		<td width="80" align="center">${sm.s_id}</td>
 	</tr>
-	<tr>
-		<td>아이디 </td>
-		<td><input type="text" id="id" name="s_id"></td>
+	<tr height="30">
+		<td width="80" bgcolor="orange" align="center">업체명</td>
+		<td width="80" align="center">${sm.s_name}</td>
 	</tr>
-	<form name="form" action="#" onsubmit="return validForm(this)">
-	<tr>
-		<td>비밀번호 </td>
-		<td><input type="text" name="s_pwd"></td>
+	<tr height="30">
+		<td width="80" bgcolor="orange" align="center">사업자주소</td>
+		<td width="80" align="center">${sm.s_num}</td>
+		
 	</tr>
-	<tr>
-		<td>비밀번호 재확인 </td>
-		<td><input type="text" name="s_pwdchek">&nbsp&nbsp<input type="submit" value="중복체크"></td>
-	</tr>
-	</form> 
-	<tr>
-		<td>업체명 </td>
-		<td><input type="text" name="s_name"></td>
-	</tr>
-	<tr>
-		<td>사업자번호 </td>
-		<td><input type="text" name="s_number"></td>
-	</tr>
-	<tr>
-		<td>이메일 </td>
-		<td><input type="text" name="s_email">@ 
-			<select email="" email="">
-                <option value="naver.com">naver.com</option>
-                <option value="gmail.com">gmail.com</option>
-			</select>
-		</td>
-	</tr>
-	<tr>
-		<td>대표번호 </td>
-		<td><input type="text" name="s_phone"></td>
-	</tr>
-	<tr>
-		<td>사업자주소 </td>
-		<td><input type="text" name="s_address"></td>
-	</tr>
-	<tr>
-	<td class="topping">토핑&무게
-    	<select name='topping' style="height:22px">
-        	<option>토핑&무게</option>
-            <option>파프리카(10g)</option>
-            <option>파프리카(50g)</option>
-            <option>양파(10g)</option>
-            <option>양파(50g)</option>
-        </select></td>                                                  
-     <td class="price">가격선정<input type="text" name="s_price" placeholder="ex)5,000원" style="width:100px">
-     <input type="button" value="추가등록" onclick="add()"></td>
-	</tr>
-	<tr>
-		<td>내부사진 등록(필수)</td>
-	 		<td><input type=file name=AttFile[] size=100  onChange="CkImageVal()" class=textidpass>
-	 		<input type=button value='사진 추가' onclick="AddFile()">
-     	</td>
-     </tr>
-     <tr>
-		<td colspan="2" class="subject">
-		<input type="submit" value="회원탈퇴">
-		<input type="button" value="수정완료" onclick="goHomeForm()">
-		</td>
+	<tr height="30">
+		<td width="80" bgcolor="orange" align="center">번호</td>
+		<td width="80" align="center">${sm.s_phone}</td>
 	</tr>
 </table>
+<br>
+<table>
+	<tr bgcolor="gray" height="30" style="text-align:center">
+		<th width="100">업체명</th>
+		<th width="100">사업자번호</th>
+		<th width="100">주소</th>
+		<th width="100">번호</th>
+	</tr>
+	<c:forEach var="seller" items="${sList}">
+		<tr height="25">
+			<td align="center">${seller.s_name }</td>
+			<td align="center">${seller.s_num }</td>
+			<td align="center">${seller.s_address }</td>
+			<td align="center">${seller.s_phone }</td>
+		</tr>		
+	</c:forEach>
+</table>
+
 
 <!-- 하단메뉴바 -->
 <div id="footer" align="center"><br>업체명: Salad82 | 사업자번호:123-45-6789<br>
@@ -236,24 +207,7 @@ text-align:right;
 
 </body>
 <script>
-function validForm(passForm) { 
-	  if (passForm.s_pwd.value == "") { 
-	    alert("패스워드를 입력하세요.");
-	    passForm.s_pwd.focus();
-	    return false;
-	  } 
-	  if (passForm.s_pwd.value != passForm.s_pwdchek.value) { 
-	    alert("패스워드가 맞지 않습니다. 확인 후 다시입력하세요");
-	    passForm.s_pwd.focus();
-	    passForm.s_pwd.select();
-	    return false;
-	  } 
-	  return true;
-	}
-	
-function goHomeForm() {
-    location.href="loginform.jsp";
-}	
+
 	
 </script>
 
