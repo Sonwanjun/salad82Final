@@ -7,16 +7,37 @@
 <meta charset="UTF-8">
 <title>판매자상세-판매기록</title>
 <style>
-	#sInfoDetail{
+	#cInfoDetail{
 		width : 1050px;
 		height : 120px;
 		margin : 0 auto;
 		border : 3px solid yellow;
 		border-collapse: collapse;
 	}
-	#sInfoDetail td{
+	#cInfoDetail td{
 		border : 1px solid red;
 		padding-left : 10px;
+	}
+	.titles{
+		background-color : #b4d9be;
+	}
+	
+	#parent{
+		width : 300px;
+		height : 70px;
+		font-size : 24px;
+		font-weight : bold;
+		text-align : center;
+		margin : 10px auto;
+		border : 3px dotted orange;
+		position : relative;
+	}
+	#child{
+		margin : auto;
+		position : absolute;
+		top : 50%;
+		left : 50%;	
+		transform: translateX(-50%) translateY(-50%);
 	}
 
 	.purcProd,#totals{
@@ -66,26 +87,32 @@
 </style>
 </head>
 <body><!-- 훑 -->
-	<table id="sInfoDetail">	<!-- 해당 구매자의 자세한 정보 -->
+	<table id="cInfoDetail">	<!-- 해당 구매자의 자세한 정보 -->
 		<tr>
-			<td>아이디</td>
-			<td>빈자리</td>
-			<td>회원이름</td>
-			<td>빈자리</td>
-			<td>연락처</td>
-			<td>빈자리</td>
+			<td class="titles">아이디</td>
+			<td>${infoDetail.c_id }</td>
+			<td class="titles">회원이름</td>
+			<td>${infoDetail.c_name }</td>
+			<td class="titles">연락처</td>
+			<td>${infoDetail.c_phone }</td>
 		</tr>
 		<tr>
-			<td>이메일</td>
-			<td colspan="2">빈자리</td>
-			<td>가입일자</td>
-			<td colspan="2">빈자리</td>
+			<td class="titles">이메일</td>
+			<td colspan="2">${infoDetail.c_email }</td>
+			<td class="titles">가입일자</td>
+			<td colspan="2">${infoDetail.c_date }</td>
 		</tr>
 		<tr>
-			<td>주소</td>
-			<td colspan="5">빈자리</td>
+			<td class="titles">주소</td>
+			<td colspan="5">${infoDetail.c_address }</td>
 		</tr>
 	</table>
+	
+	<div id="parent">
+		<div id="child">
+			구매 목록
+		</div>
+	</div>
 	
 	<table class="purcProd">
 		<tr>
@@ -100,22 +127,22 @@
 	<table class="purcProd" id="pList">		<!-- 해당 구매자의 구매목록이 출력될 테이블 -->
 		<c:forEach var="pd" items="${list }">
 			<tr>
-				<td>${pd.p_type }</td>
-				<td>${pd.p_date }</td>
+				<td>${pd.o_date }</td>
+				<td>${pd.o_num }</td>
 				<td>${pd.p_name }</td>
-				<td>${pd.p_remain }</td>
-				<td>${pd.p_price }</td>
+				<td>${pd.od_amount }</td>
+				<td>${pd.price }</td>
 			</tr>
 		</c:forEach>
 	</table>
 		
 	<table id="totals">
 		<tr>
-			<td width="400px">총 구매 건수 : ${totalCount }</td>	<!-- 해당 구매자의 총 구매건수 -->
-			<td width="500px">총 구매 금액 : {빈자리}</td>
+			<td width="400px">총 주문 횟수 : ${totalCount }</td>	<!-- 해당 구매자의 총 구매건수 -->
+			<td width="500px">총 구매 금액 : ${totalPurcMoney }</td>
 		</tr>
 	</table>
 	
-	<div align="center">페이징 자리</div>
+	<div align="center">${paging }</div>
 </body>
 </html>

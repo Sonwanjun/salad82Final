@@ -14,7 +14,7 @@ public class PD {
 	private String p_name;
 	private String s_id;
 	private int p_price;
-	private Object p_date; //TODO 날짜를 object로 받아서 뿌려주면 좀더 간결하게 나옴
+	private String p_date; //
 	private int p_selled;
 	private int p_remain;
 	private String p_contents;
