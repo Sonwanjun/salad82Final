@@ -189,7 +189,7 @@ text-align:right;
 		<th width="100">주소</th>
 		<th width="100">번호</th>
 	</tr>
-	<c:forEach var="seller" items="${sList}">
+	<c:forEach var="seller" items="${sList}">  <!-- 리스트로 반복문돌려서 가져오기 -->
 		<tr height="25">
 			<td align="center">${seller.s_name }</td>
 			<td align="center">${seller.s_num }</td>

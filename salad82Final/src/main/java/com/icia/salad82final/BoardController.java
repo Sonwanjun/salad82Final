@@ -27,4 +27,12 @@ public class BoardController {
 		return mav;
 		
 	}
+	
+	@RequestMapping(value = "/notice", method = RequestMethod.GET)
+	public ModelAndView notice(Integer pageNum) {
+		mav = bm.getNotice(pageNum);
+
+		return mav;
+
+	}
 }
