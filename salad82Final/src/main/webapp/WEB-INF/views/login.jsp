@@ -9,7 +9,6 @@
 <title>로그인</title>
 
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="resources/js/jquery.serializeObject.js"></script>
 
 <style>
 h1{
@@ -101,17 +100,17 @@ padding-top:10%;
 	로고
 </h1>
 <div id="header">DIY SIG BEST Recipe</div>
-<p id="loginbox">
-아이디 : <input type = "text" name = "m_id" placeholder = "아이디"><br>
-비밀번호 : <input type = "password" name = "m_pwd" placeholder="비밀번호"><br>
+<form action = "access" name = "logFrm" id="loginbox" method = "post">
+아이디
+<input type = "text" name = "c_id" placeholder = "아이디"><br>
+${check}
+비밀번호
+<input type = "password" name = "c_pwd" placeholder="비밀번호"><br>
 <button>로그인</button>
 <a href="./loginform">회원가입</a>
-
-
-
-
 <a href="#search" onclick="articleView()"> 아이디/비밀번호 찾기</a>
-</p>
+
+</form>
 	<div id="articleView_layer">
 		<div id="bg_layer"></div>
 		<div id="contents_layer">
@@ -168,12 +167,9 @@ padding-top:10%;
 		}
 	});
  	 
- 
+console.log(${check});
 
 
 </script>
 
 </html>
-
-
-

@@ -43,7 +43,7 @@ th, td {
 </style>
 
 <body>
-<p id="row"><button class="login">로그인</button><button class="logout">로그아웃</button>    회원가입/마이페이지    고객센터</p>
+<p id="row"><button class="login">로그인</button><form id="logoutFrm" action="logout" method="post"><a href="javascript:logout()">로그아웃</a></form>    회원가입/마이페이지    고객센터</p>
 <h1>
    로고
 </h1>
@@ -66,4 +66,10 @@ th, td {
                         주소: 인천 남구 학익동 663-1 태승빌딩 | 전화번호:032-123-4567<br>
                         Copyrights(c) ㈜Salad82 2015 all rights reserved.</div>
 </body>
+
+<script>
+function logout(){
+	$('#logoutFrm').submit(); //서버로 전송
+}
+</script>
 </html>

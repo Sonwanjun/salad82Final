@@ -3,15 +3,36 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.icia.salad82final.dao.CustomerDao">
-<!-- 일반회원가입 -->
-<insert id="customerInsert" parameterType="customer">
-		INSERT INTO C VALUES(#{c_id}, default, #{c_pwd}, #{c_name}, #{c_address}, #{c_phone}, #{c_email}, default)
-</insert>
+	<!-- 일반회원가입 -->
+	<insert id="customerInsert" parameterType="customer">
+		INSERT INTO C
+		VALUES(#{c_id}, default, #{c_pwd}, #{c_name}, #{c_address},
+		#{c_phone}, #{c_email}, default)
+	</insert>
 
-<!-- 아이디 확인 -->
-<select id="idCheck" resultType="customer">
- SELECT c_id FROM C WHERE c_id = #{c_id}
-</select>
+	<!-- 아이디 확인 -->
+	<select id="idCheck" resultType="customer">
+		SELECT c_id FROM C WHERE c_id = #{c_id}
+	</select>
 
+
+	<select id="getSecurityPwd" parameterType="String"
+		resultType="String">
+		SELECT C_PWD FROM C WHERE C_ID=#{c_id}
+	</select>
+
+	<select id="getMemberInfo" parameterType="String"
+		resultType="customer">
+		SELECT * FROM CINFO WHERE C_ID=#{c_id}
+	</select>
+
+	<select id="hashMapTest" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM C WHERE C_ID=#{c_id} AND C_PWD=#{c_pwd}
+	</select>
+
+	<select id="hashMapTest2" parameterType="String"
+		resultType="HashMap">
+		SELECT * FROM CINFO WHERE C_ID=#{c_id}
+	</select>
 
 </mapper>

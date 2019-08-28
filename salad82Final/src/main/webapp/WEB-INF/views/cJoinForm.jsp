@@ -56,7 +56,7 @@ text-align:right;
  	<td>아이디 </td>
 	<td>  <!-- <input type="text" name="c_id" id="아이디"> -->
     <input type="text" class="form-control" name="c_id" id="c_id"  required>
-    <button type="button" class="idCheck">중복 확인</button>
+    <button type="button" class="idCheck" id="중복확인">중복 확인</button>
 	</td>
 	</tr>
 	<tr>
@@ -109,7 +109,7 @@ function goLoginForm() {
     location.href="loginform";
 } 
 
-function check(){
+/* function check(){
 	var frm=document.cJoinForm;
 	var length=frm.length-1; //6개
 	for(var i=0;i<length;i++){
@@ -120,7 +120,7 @@ function check(){
 		}
 	}   
 	return true; //성공
-}
+} */
 
 $(".idCheck").click(function(){
  

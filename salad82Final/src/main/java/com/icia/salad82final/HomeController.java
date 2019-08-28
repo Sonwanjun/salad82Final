@@ -11,19 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.icia.salad82final.bean.Customer;
 import com.icia.salad82final.bean.Seller;
-import com.icia.salad82final.service.CustomerManagement;
-import com.icia.salad82final.service.SellerManagement;
+
 
 @Controller
 public class HomeController {
 	
 	ModelAndView mav;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
-		
-		return "redirect:adminPageMain";
-	}
+
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
@@ -49,7 +44,7 @@ public class HomeController {
 	}
 	
 	  @RequestMapping(value = "/home", method = RequestMethod.GET)
-	  public String home(Locale locale, Model model) {
+	  public String home() {
 	  
 	  return "home"; 
 	  }
