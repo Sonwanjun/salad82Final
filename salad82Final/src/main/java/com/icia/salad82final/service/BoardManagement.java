@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.icia.salad82final.bean.Board;
+import com.icia.salad82final.bean.Seller;
 import com.icia.salad82final.dao.BoardDao;
 import com.icia.salad82final.userClass.PagingForAjax;
 
@@ -77,5 +78,27 @@ public class BoardManagement {
 		}
 		mav.setViewName(view);
 		return mav;
+	}
+
+	public ModelAndView getBoardListCount(Integer pNum) {
+		
+		mav = new ModelAndView();
+		
+		String view = null;
+		List<Board> bList = null;
+		int pageNum = (pNum == null) ? 1 : pNum;
+		
+		bList = bDao.getBoardListCount(pageNum);
+		
+		if(bList != null) {
+			view = "myRecipe";
+			mav.addObject("bList", bList);
+			mav.addObject("paging", getPaging(pageNum, view));
+		} else {
+			view = "home";
+		}
+		mav.setViewName(view);
+		return mav;
+		
 	}
 }
