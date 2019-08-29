@@ -14,9 +14,7 @@
 }
 
 #scTab td {
-	width: 250px;
 	height: 70px;
-	margin: 0 25px;
 	font-size: 24px;
 	font-weight: bold;
 	text-align: center;

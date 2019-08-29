@@ -74,6 +74,10 @@ body {
 	display: inline;
 }
 
+#leftMenu {
+	font-size : 20px;
+	font-weight : bold;
+}
 #leftMenu td {
 	width: 248px;
 	height: 50px;
@@ -83,6 +87,8 @@ body {
 	display: inline-block;
 	background-color: green;
 	text-align: center;
+}
+#leftMenu td[onclick] {
 	cursor : pointer;
 }
 
@@ -93,7 +99,7 @@ body {
 	background-color: pink;
 	display: inline-block;
 	position: absolute;
-	overflow: scroll;
+	overflow: auto;
 }
 
 #footer {
@@ -129,10 +135,10 @@ body {
 			<div id="leftMenuArea">
 				<table id="leftMenu">
 					<tr>
-						<td onclick="sellerInfo()">메뉴1</td>
+						<td onclick="sellerInfo()">판매자/구매자 정보</td>
 					</tr>
 					<tr>
-						<td>메뉴2</td>
+						<td>DIY 재료 분류 관리</td>
 					</tr>
 					<tr>
 						<td>메뉴3</td>

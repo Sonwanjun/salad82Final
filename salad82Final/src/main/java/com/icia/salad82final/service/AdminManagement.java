@@ -120,7 +120,7 @@ public class AdminManagement {
 		return mav;
 
 	}
-
+	
 	@Transactional
 	public ModelAndView getRegProdInfo(String s_id, Integer pNum) {
 
@@ -177,7 +177,8 @@ public class AdminManagement {
 		List<Order> list = aDao.getPurcProdInfo(param); //해당 구매자, 해당 페이지에 맞는 구매정보 가져오기
 		
 		if(infoDetail!=null && list!=null) {
-			view = "purcProdInfo";
+			view = "ingredientCategory"; //TODO 다 썼으면 바꿔야함
+			//view = "purcProdInfo";
 			
 			mav.addObject("infoDetail", infoDetail);
 			mav.addObject("list", list);
