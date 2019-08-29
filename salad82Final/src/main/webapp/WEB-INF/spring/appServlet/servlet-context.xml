@@ -43,6 +43,7 @@
 			value="net.sf.log4jdbc.DriverSpy" />
 		<beans:property name="url"
 			value="jdbc:log4jdbc:oracle:thin:@192.168.0.244:1521:XE" />
+			<!--학원 내컴퓨터아이피주소 @192.168.0.244:1521:XE"-->
 		<beans:property name="username" value="salad82" />
 		<beans:property name="password" value="1234" />
 	</beans:bean>

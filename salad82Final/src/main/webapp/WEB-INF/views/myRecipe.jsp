@@ -178,20 +178,16 @@ td {
 			<img src="resources/salad.jpg">
 		</div>
 	</div>
-	<div class="searchRecipe">
-		<p Style="text-align:center">${map.count}개의게시물이있습니다.</p>
-		<p Style="text-align:center">
-			<select name="searchType" id="select_searchType">
-				<option value="CONTENTS" selected="selected">내용</option>
-				<option value="BNUM">글번호</option>
-				<!--<option value="P_CODE">품목코드</option>-->
-			</select> 
-			<input type="text" name="textfield" id="searchWord" style="width:1000px"> 
-			<a href="javascript:fn_searchList()" class="btn">검색</a>
-		</p>
 
+
+	<div id="search" Style="text-align: center";>
+	<form id="searchFrm" action="searchList" method="get">
+		<input type="hidden" name="searchNum" value="${bList}"/>
+		<input type="text" name="searchWord" size="15" maxlength="30" style="width: 1000px"/>
+		<input type="submit" value="검색"/>
+	</form>
 	</div>
-	<br>
+	
 	<div id="boardlistsTitle">
 		<h2>마이 레시피 리스트</h2>
 	</div>
@@ -225,13 +221,11 @@ td {
 	</div>
 </body>
 
-<script>
-/*function fn_searchList(){
-	var searchType = $("#searchType option:selected").val();
-	var searchWord = $("#searchWord").val();
-	
-	window.location.href="/openBoardResult"?curPage=1&searchType
-}*/
-</script>
-
 </html>
+
+<!--<p Style="text-align: center">개의게시물이있습니다.</p>
+		<p Style="text-align: center">
+		<input type="text" name="" id=""
+				value="" style="width: 1000px"> 
+				<a href="javascript:getSearchList()" class="btn">검색</a>
+-->

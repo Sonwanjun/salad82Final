@@ -1,5 +1,6 @@
 package com.icia.salad82final.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,10 +30,11 @@ public class BoardManagement {
 		int pageNum = (pNum == null) ? 1 : pNum;
 
 		bList = bDao.getBoardList(pageNum);
+
 		if (bList != null) {
 			view = "myRecipe"; // TODO 다 썼으면 sellerInfo로 바꿀것
 			mav.addObject("bList", bList);
-			mav.addObject("paging", getPaging(pageNum,view));
+			mav.addObject("paging", getPaging(pageNum, view));
 		} else {
 			view = "home";
 		}
@@ -40,6 +42,7 @@ public class BoardManagement {
 		return mav;
 		// TODO 게시판상세 추후 추가
 	}
+
 	private String getPaging(int pNum, String infoName) {
 		int maxNum = bDao.getBoardCount();
 		int listCount = 5;
@@ -49,16 +52,30 @@ public class BoardManagement {
 
 		return paging.makeHtmlPaging();
 	}
-/*	public ModelAndView OpenBoardList(HttpServletRequest request,Map<String,Object> commandMap, 
-			@RequestParam(value="curPage",defaultValue="1")int curPage,
-			@RequestParam(value="searchType,defaultValue=")
-	*/	
-	
+
 	public ModelAndView getNotice(Integer pageNum) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public ModelAndView getSearchList(Integer pNum,String searchWord) {
+		int pageNum= (pNum==null) ? 1 : pNum;
+		HashMap <String,Object> param = new HashMap<>();
+		param.put("pageNum",pageNum);
+		param.put("searchWord",searchWord);
+		System.out.println(param);
+		List<Board> sbList = bDao.getSearchList(param);
+		
+		String view= null;
+		
+		if (sbList != null) {
+			view = "myRecipe"; // TODO 다 썼으면 sellerInfo로 바꿀것
+			mav.addObject("sbList",sbList);
+			mav.addObject("paging", getPaging(pageNum, view));
+		} else {
+			view = "home";
+		}
+		mav.setViewName(view);
+		return mav;
+	}
 }
-
-
-	

@@ -16,4 +16,13 @@
 		SELECT *
 		FROM BLIST WHERE BNUM=#{b_Num}
 	</select>
+	<select id="getSearchList" parameterType="HashMap" resultType="board">
+		<![CDATA[
+		SELECT B_NUM, C_ID, B_CONTENTS, B_DATE, B_VIEWS
+		FROM (SELECT ROWNUM AS RONUM, B_NUM, C_ID, B_CONTENTS, B_DATE, B_VIEWS
+			  FROM BLIST
+			  WHERE B_CONTENTS LIKE '%${searchWord}%')
+		WHERE RONUM>=#{pageNum} AND RONUM<=#{pageNum}
+		]]>
+	</select>
 </mapper>
