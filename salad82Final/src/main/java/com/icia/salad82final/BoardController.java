@@ -27,6 +27,16 @@ public class BoardController {
 		return mav;
 
 	}
+	@RequestMapping(value = "/boardListCount")
+	public ModelAndView getBoardListCount(Integer pNum) {
+		
+		System.out.println(pNum);
+	//	Paging paging =getPaging;
+		mav = bm.getBoardListCount(pNum);
+		
+		return mav;
+		
+	}
 
 	@RequestMapping(value = "/searchList")//
 	public ModelAndView searchList(Integer pNum,String searchWord) {
@@ -38,6 +48,7 @@ public class BoardController {
 		return mav;
 	
 	}
+	
 
 	@RequestMapping(value = "/notice", method = RequestMethod.GET)
 	public ModelAndView notice(Integer pageNum) {

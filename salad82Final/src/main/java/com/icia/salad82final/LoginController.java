@@ -10,30 +10,26 @@ import org.springframework.web.servlet.ModelAndView;
 import com.icia.salad82final.bean.Customer;
 import com.icia.salad82final.service.CustomerManagement;
 
-
 public class LoginController {
 
+	@Autowired
+	HttpSession session;
 
-	  @Autowired 
-	  HttpSession session;
-	  
-	  ModelAndView mav;
-	  
-	  @Autowired 
-	  CustomerManagement cm;
-	  
-	  @RequestMapping(value = "/access", method = RequestMethod.POST) //로그인
-	  public ModelAndView access(Customer ct) {
-		  mav = cm.access(ct);
-		  return mav;
-		  }
-	  
-	  @RequestMapping(value = "/logout", method = RequestMethod.POST) //로그아웃
-	  public String logout() { 
-		  session.invalidate(); //세션 무효화 
-		  return "home";
-		  }
-	  
+	ModelAndView mav;
 
-  
+	@Autowired
+	CustomerManagement cm;
+
+	@RequestMapping(value = "/access", method = RequestMethod.POST) // 로그인
+	public ModelAndView access(Customer ct) {
+		mav = cm.access(ct);
+		return mav;
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.POST) // 로그아웃
+	public String logout() {
+		session.invalidate(); // 세션 무효화
+		return "home";
+	}
+
 }

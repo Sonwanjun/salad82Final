@@ -180,14 +180,14 @@ td {
 	</div>
 
 
-	<div id="search" Style="text-align: center";>
-	<form id="searchFrm" action="searchList" method="get">
-		<input type="hidden" name="searchNum" value="${bList}"/>
-		<input type="text" name="searchWord" size="15" maxlength="30" style="width: 1000px"/>
-		<input type="submit" value="검색"/>
-	</form>
+	<div id="search" Style="text-align: center">
+		<form id="searchFrm" action="searchList" method="get">
+			<input type="hidden" name="searchNum" value="${bList}" /> <input
+				type="text" name="searchWord" size="15" maxlength="30"
+				style="width: 1000px" /> <input type="submit" value="검색" />
+		</form>
 	</div>
-	
+
 	<div id="boardlistsTitle">
 		<h2>마이 레시피 리스트</h2>
 	</div>
@@ -208,6 +208,8 @@ td {
 				</tr>
 			</c:forEach>
 		</table>
+		<table><th>
+		<form onclick="boardListCount()"></th></table>
 	</div>
 	<br>
 	<br>
@@ -220,12 +222,24 @@ td {
 		태승빌딩 | 전화번호:032-123-4567<br> Copyrights(c) ㈜Salad82 2015 all <br>
 	</div>
 </body>
-
+<script>
+	function boardListCount(pNum) {
+		$.ajax({
+			type : 'get',
+			url : 'boardListCount',
+			data : {
+				pNum : pNum
+			},
+			dataType : 'html',
+			success : function(data) {
+				$('#boardListCount').html(data);
+			},
+			error : function(error) {
+				console.log(ERRRRRRRRRRER)
+				alert('에러러러레');
+			}
+		});
+	};
+	boardListCount();
+</script>
 </html>
-
-<!--<p Style="text-align: center">개의게시물이있습니다.</p>
-		<p Style="text-align: center">
-		<input type="text" name="" id=""
-				value="" style="width: 1000px"> 
-				<a href="javascript:getSearchList()" class="btn">검색</a>
--->

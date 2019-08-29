@@ -14,4 +14,7 @@ public interface BoardDao {
 
 	List<Board> getBoardList(int pageNum);
 
+	List<Board> getBoardListCount(int pageNum);
+
+
 	}

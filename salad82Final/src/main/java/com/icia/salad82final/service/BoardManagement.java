@@ -53,6 +53,16 @@ public class BoardManagement {
 
 		return paging.makeHtmlPaging();
 	}
+	
+	private String getPaging(int pNum, String infoName, int maxnum) {
+		int maxNum = maxnum; // 총 항목의 갯수
+		int listCount = 5;
+		int pageCount = 2; // 페이지 선택숫자 출력갯수
+		PagingForAjax paging = new PagingForAjax(maxNum, pNum, listCount, pageCount, infoName);
+		return paging.makeHtmlPaging();
+	}
+	
+	
 
 	public ModelAndView getNotice(Integer pageNum) {
 		// TODO Auto-generated method stub
@@ -60,7 +70,7 @@ public class BoardManagement {
 	}
 
 	public ModelAndView getSearchList(Integer pNum,String searchWord) {
-		int pageNum= (pNum==null) ? 1 : pNum;
+		int pageNum = (pNum==null) ? 1 : pNum;
 		HashMap <String,Object> param = new HashMap<>();
 		param.put("pageNum",pageNum);
 		param.put("searchWord",searchWord);
@@ -84,7 +94,7 @@ public class BoardManagement {
 		
 		mav = new ModelAndView();
 		
-		String view = null;
+		String view = "myRecipe";
 		List<Board> bList = null;
 		int pageNum = (pNum == null) ? 1 : pNum;
 		
@@ -93,7 +103,7 @@ public class BoardManagement {
 		if(bList != null) {
 			view = "myRecipe";
 			mav.addObject("bList", bList);
-			mav.addObject("paging", getPaging(pageNum, view));
+		//	mav.addObject("paging", getPaging(pageNum, view,"B_SHORT"));
 		} else {
 			view = "home";
 		}

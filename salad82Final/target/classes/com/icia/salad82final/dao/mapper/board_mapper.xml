@@ -25,4 +25,9 @@
 		WHERE RONUM>=#{pageNum} AND RONUM<=#{pageNum}
 		]]>
 	</select>
+		<select id="getBoardListCount" parameterType="int" resultType="board">
+		<![CDATA[ 
+		SELECT * FROM B_SHORT WHERE RONUM>=#{pageNum}*5-4 AND RONUM<=#{pageNum}*5
+		]]>
+	</select>
 </mapper>
