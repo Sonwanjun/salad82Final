@@ -27,28 +27,34 @@ public class BoardController {
 		return mav;
 
 	}
-	@RequestMapping(value = "/boardListCount")
-	public ModelAndView getBoardListCount(Integer pNum) {
-		
-		System.out.println(pNum);
-	//	Paging paging =getPaging;
-		mav = bm.getBoardListCount(pNum);
-		
-		return mav;
-		
+
+	@RequestMapping(value = "/myRecipeWrite", method = RequestMethod.GET)
+	public ModelAndView getWriteFrm() {
+		mav=new ModelAndView();
+		mav.setViewName("myRecipeWrite");
+		return mav;	
 	}
 
-	@RequestMapping(value = "/searchList")//
-	public ModelAndView searchList(Integer pNum,String searchWord) {
+	@RequestMapping(value = "/boardListCount")
+	public ModelAndView getBoardListCount(Integer pNum) {
+		// pageNum = pNum
+
+		System.out.println(pNum);
+		mav = bm.boardListCount(pNum);
+		return mav;
+
+	}
+
+	@RequestMapping(value = "/searchList") //
+	public ModelAndView searchList(Integer pNum, String searchWord) {
 		System.out.println(pNum);
 		System.out.println(searchWord);
-		
-		mav=bm.getSearchList(pNum,searchWord);
-		
+
+		mav = bm.getSearchList(pNum, searchWord);
+
 		return mav;
-	
+
 	}
-	
 
 	@RequestMapping(value = "/notice", method = RequestMethod.GET)
 	public ModelAndView notice(Integer pageNum) {

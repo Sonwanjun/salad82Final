@@ -11,12 +11,13 @@
 	</select>
 	<select id="getBoardCount" resultType="int">
 		SELECT COUNT(*) FROM BLIST
-	</select>
+</select>
 	<select id="getContents" parameterType="int" resultType="board">
 		SELECT *
 		FROM BLIST WHERE BNUM=#{b_Num}
 	</select>
-	<select id="getSearchList" parameterType="HashMap" resultType="board">
+	<select id="getSearchList" parameterType="HashMap"
+		resultType="board">
 		<![CDATA[
 		SELECT B_NUM, C_ID, B_CONTENTS, B_DATE, B_VIEWS
 		FROM (SELECT ROWNUM AS RONUM, B_NUM, C_ID, B_CONTENTS, B_DATE, B_VIEWS
@@ -25,9 +26,12 @@
 		WHERE RONUM>=#{pageNum} AND RONUM<=#{pageNum}
 		]]>
 	</select>
-		<select id="getBoardListCount" parameterType="int" resultType="board">
-		<![CDATA[ 
-		SELECT * FROM B_SHORT WHERE RONUM>=#{pageNum}*5-4 AND RONUM<=#{pageNum}*5
-		]]>
+	<select id="boardListCount" parameterType="Integer"
+		resultType="board">
+		SELECT COUNT (*) FROM B_SHORT 
 	</select>
 </mapper>
+<!-- <![CDATA[ 
+		SELECT * FROM B_SHORT 
+		WHERE RONUM>=#{pageNum}*5-4 AND RONUM<=#{pageNum}*5
+		]]> -->

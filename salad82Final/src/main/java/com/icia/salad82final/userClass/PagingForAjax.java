@@ -15,7 +15,6 @@ public class PagingForAjax {
 		this.infoName = infoName;
 	}
 
-	@SuppressWarnings("unused")
 	public String makeHtmlPaging() {
 		// 전체 페이지 갯수
 		int totalPage = (maxNum % listCount > 0)

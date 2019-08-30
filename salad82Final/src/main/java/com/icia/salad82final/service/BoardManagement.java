@@ -44,6 +44,12 @@ public class BoardManagement {
 		// TODO 게시판상세 추후 추가
 	}
 
+	public ModelAndView goMyRecipeWrite() {
+		mav = new ModelAndView();
+		mav.setViewName("/myRecipeWrite");
+		return mav;
+	}
+
 	private String getPaging(int pNum, String infoName) {
 		int maxNum = bDao.getBoardCount();
 		int listCount = 5;
@@ -53,35 +59,26 @@ public class BoardManagement {
 
 		return paging.makeHtmlPaging();
 	}
-	
-	private String getPaging(int pNum, String infoName, int maxnum) {
-		int maxNum = maxnum; // 총 항목의 갯수
-		int listCount = 5;
-		int pageCount = 2; // 페이지 선택숫자 출력갯수
-		PagingForAjax paging = new PagingForAjax(maxNum, pNum, listCount, pageCount, infoName);
-		return paging.makeHtmlPaging();
-	}
-	
-	
 
 	public ModelAndView getNotice(Integer pageNum) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ModelAndView getSearchList(Integer pNum,String searchWord) {
-		int pageNum = (pNum==null) ? 1 : pNum;
-		HashMap <String,Object> param = new HashMap<>();
-		param.put("pageNum",pageNum);
-		param.put("searchWord",searchWord);
+	public ModelAndView getSearchList(Integer pNum, String searchWord) {
+		int pageNum = (pNum == null) ? 1 : pNum;
+		HashMap<String, Object> param = new HashMap<>();
+		param.put("pageNum", pageNum);
+		param.put("searchWord", searchWord);
+		System.out.println("asdf");
 		System.out.println(param);
 		List<Board> sbList = bDao.getSearchList(param);
-		
-		String view= null;
-		
+		System.out.println("asdfsfsdgh");
+		String view = null;
+
 		if (sbList != null) {
 			view = "myRecipe"; // TODO 다 썼으면 sellerInfo로 바꿀것
-			mav.addObject("sbList",sbList);
+			mav.addObject("sbList", sbList);
 			mav.addObject("paging", getPaging(pageNum, view));
 		} else {
 			view = "home";
@@ -90,25 +87,23 @@ public class BoardManagement {
 		return mav;
 	}
 
-	public ModelAndView getBoardListCount(Integer pNum) {
-		
+	public ModelAndView boardListCount(Integer pNum) {
 		mav = new ModelAndView();
-		
-		String view = "myRecipe";
-		List<Board> bList = null;
+		String view = null;
+		List<Board> bcList = bDao.boardListCount(pNum);
+
 		int pageNum = (pNum == null) ? 1 : pNum;
-		
-		bList = bDao.getBoardListCount(pageNum);
-		
-		if(bList != null) {
+
+		if (bcList != null) {
 			view = "myRecipe";
-			mav.addObject("bList", bList);
-		//	mav.addObject("paging", getPaging(pageNum, view,"B_SHORT"));
+			mav.addObject("bcList", bcList);
+			mav.addObject("paging", getPaging(pageNum, view));
 		} else {
 			view = "home";
 		}
 		mav.setViewName(view);
+		System.out.println("bcList" + bcList);
 		return mav;
-		
 	}
+
 }

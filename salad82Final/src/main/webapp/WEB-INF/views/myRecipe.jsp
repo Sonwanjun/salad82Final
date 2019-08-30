@@ -111,6 +111,8 @@ li {
 	padding-bottom: 15px;
 	float: center;
 }
+#boardListCount{
+text-align:center;}
 
 div {
 	overflow-x: auto;
@@ -208,9 +210,12 @@ td {
 				</tr>
 			</c:forEach>
 		</table>
-		<table><th>
-		<form onclick="boardListCount()"></th></table>
+		<div>${paging}
+		</div>
 	</div>
+	<div id="myRecipeWrite">
+	 <a href="myRecipeWrite">글쓰기</a></div>
+
 	<br>
 	<br>
 
@@ -223,23 +228,6 @@ td {
 	</div>
 </body>
 <script>
-	function boardListCount(pNum) {
-		$.ajax({
-			type : 'get',
-			url : 'boardListCount',
-			data : {
-				pNum : pNum
-			},
-			dataType : 'html',
-			success : function(data) {
-				$('#boardListCount').html(data);
-			},
-			error : function(error) {
-				console.log(ERRRRRRRRRRER)
-				alert('에러러러레');
-			}
-		});
-	};
-	boardListCount();
+	
 </script>
 </html>
