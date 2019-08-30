@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>·Î±×ÀÎ</title>
+<title>ë¡œê·¸ì¸</title>
 
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -21,8 +20,8 @@ text-align:right;
 }
 
 #loginbox{
-text-align:center;
 padding-top:10%;
+padding-left:40%;
 }
 
 #header {
@@ -89,52 +88,53 @@ padding-top:10%;
 	white-space: normal;
 	overflow: scroll
 }
- 
 </style>
-
 </head>
-
 <body>
-<p id="createbox">·Î±×ÀÎ/·Î±×¾Æ¿ô    È¸¿ø°¡ÀÔ/¸¶ÀÌÆäÀÌÁö    °í°´¼¾ÅÍ</p>
+<p id="createbox">ë¡œê·¸ì¸/ë¡œê·¸ì•„ì›ƒ    íšŒì›ê°€ì…/ë§ˆì´í˜ì´ì§€    ê³ ê°ì„¼í„°</p>
 <h1>
-	·Î°í
+	ë¡œê³ 
 </h1>
 <div id="header">DIY SIG BEST Recipe</div>
-<form action = "access" name = "logFrm" id="loginbox" method = "post">
-¾ÆÀÌµğ
-<input type = "text" name = "c_id" placeholder = "¾ÆÀÌµğ"><br>
-${check}
-ºñ¹Ğ¹øÈ£
-<input type = "password" name = "c_pwd" placeholder="ºñ¹Ğ¹øÈ£"><br>
-<button>·Î±×ÀÎ</button>
-<a href="./loginform">È¸¿ø°¡ÀÔ</a>
-<a href="#search" onclick="articleView()"> ¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£ Ã£±â</a>
-
+<form action = "access" name = "logFrm"  method = "post">
+<table id="loginbox">
+<tr>
+<td>ì•„ì´ë””</td> <td><input type = "text" name = "id" placeholder = "ì•„ì´ë””" required></td><td>${check}</td>
+</tr>
+<tr>
+<td>ë¹„ë°€ë²ˆí˜¸</td> <td><input type = "password" name = "pwd" placeholder="ë¹„ë°€ë²ˆí˜¸" required></td>
+</tr>
+<tr>
+<td><button>ë¡œê·¸ì¸</button></td> 
+<td><a href="./loginform">íšŒì›ê°€ì…</a>
+<a href="#search" onclick="articleView()"> ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</a></td>
+</tr>
+</table>
 </form>
 	<div id="articleView_layer">
 		<div id="bg_layer"></div>
 		<div id="contents_layer">
-		¾ÆÀÌµğÃ£±â<br>
-		ÀÌ¸§&nbsp;&nbsp;&nbsp; : <input type="text" name = "nameChk"><br>
-		ÀÌ¸ŞÀÏ : <input type="text" name = "emailChk"><br>
-		<button>È®ÀÎ</button><br><br><br><br><br>
-		ºñ¹Ğ¹øÈ£Ã£±â<br>
-		¾ÆÀÌµğ : <input type="text" name = "nameChk"><br>
-		ÀÌ¸ŞÀÏ : <input type="text" name = "emailChk"><br>
-		<button>È®ÀÎ</button>
+		ì•„ì´ë””ì°¾ê¸°<br>
+		ì´ë¦„&nbsp;&nbsp;&nbsp; : <input type="text" name = "nameChk"><br>
+		ì´ë©”ì¼ : <input type="text" name = "emailChk"><br>
+		<button id="loginTry">í™•ì¸</button><br><br><br><br><br>
+		ë¹„ë°€ë²ˆí˜¸ì°¾ê¸°<br>
+		ì•„ì´ë”” : <input type="text" name = "nameChk"><br>
+		ì´ë©”ì¼ : <input type="text" name = "emailChk"><br>
+		<button>í™•ì¸</button>
 		</div>
 	</div>
 
-<div id="footer" align="center"><br>¾÷Ã¼¸í: Salad82 | »ç¾÷ÀÚ¹øÈ£:123-45-6789<br>
-                        ÁÖ¼Ò: ÀÎÃµ ³²±¸ ÇĞÀÍµ¿ 663-1 ÅÂ½Âºôµù | ÀüÈ­¹øÈ£:032-123-4567<br>
-                        Copyrights(c) ¢ßSalad82 2015 all rights reserved.</div>
+<div id="footer" align="center"><br>ì—…ì²´ëª…: Salad82 | ì‚¬ì—…ìë²ˆí˜¸:123-45-6789<br>
+                        ì£¼ì†Œ: ì¸ì²œ ë‚¨êµ¬ í•™ìµë™ 663-1 íƒœìŠ¹ë¹Œë”© | ì „í™”ë²ˆí˜¸:032-123-4567<br>
+                        Copyrights(c) ãˆœSalad82 2015 all rights reserved.</div>
 
 </body>
 
 <script>
 
  function articleView(num){
-	$('#articleView_layer').addClass('open'); //addClass = Å¬·¡½ºÃß°¡
+	$('#articleView_layer').addClass('open'); //addClass = í´ë˜ìŠ¤ì¶”ê°€
 	$.ajax({
 		type:'get',                              //modalbox modallessBox
 		url:'contents',
@@ -150,7 +150,7 @@ ${check}
 		}
 	}); //ajax End
 }//function End
-//LightBox ÇØÁ¦
+//LightBox í•´ì œ
 
   var $layerWindow=$('#articleView_layer');
  $layerWindow.find('#bg_layer').on('mousedown',function(event){
@@ -167,9 +167,10 @@ ${check}
 		}
 	});
  	 
+ 
 console.log(${check});
 
 
+ 
 </script>
-
 </html>

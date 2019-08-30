@@ -43,7 +43,7 @@
 			value="net.sf.log4jdbc.DriverSpy" />
 		<beans:property name="url"
 			value="jdbc:log4jdbc:oracle:thin:@192.168.0.244:1521:XE" />
-			<!--학원 내컴퓨터아이피주소 @192.168.0.244:1521:XE"-->
+		<!--학원 내컴퓨터아이피주소 @192.168.0.244:1521:XE" -->
 		<beans:property name="username" value="salad82" />
 		<beans:property name="password" value="1234" />
 	</beans:bean>
@@ -96,6 +96,14 @@
 			value="com.icia.salad82final.dao.SellerDao" />
 	</beans:bean>
 
+	<beans:bean id="lDao"
+		class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<beans:property name="sqlSessionFactory"
+			ref="sqlSessionFactory" />
+		<beans:property name="mapperInterface"
+			value="com.icia.salad82final.dao.LoginDao" />
+	</beans:bean>
+
 
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -104,20 +112,10 @@
 		<beans:property name="maxInMemorySize" value="10000000" />
 	</beans:bean>
 
-<!--
-	인터셉터(가로채기) 설정
-	<interceptors>
-		<interceptor>
-			<mapping path="/*" />
-			<exclude-mapping path="/" />
-			<exclude-mapping path="/access" />
-			<exclude-mapping path="/joinFrm" />
-			<exclude-mapping path="/memberInsert" />
-			<exclude-mapping path="/access" />
-			<exclude-mapping path="/boardList" />
-			<beans:bean
-				class="com.icia.salad82final.userClass.SessionInterceptor" />
-		</interceptor>
-	</interceptors> -->
+	<!-- 인터셉터(가로채기) 설정 <interceptors> <interceptor> <mapping path="/*" /> <exclude-mapping 
+		path="/" /> <exclude-mapping path="/access" /> <exclude-mapping path="/joinFrm" 
+		/> <exclude-mapping path="/memberInsert" /> <exclude-mapping path="/access" 
+		/> <exclude-mapping path="/boardList" /> <beans:bean class="com.icia.salad82final.userClass.SessionInterceptor" 
+		/> </interceptor> </interceptors> -->
 
 </beans:beans>

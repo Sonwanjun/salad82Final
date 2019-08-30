@@ -16,23 +16,4 @@
 	</select>
 
 
-	<select id="getSecurityPwd" parameterType="String"
-		resultType="String">
-		SELECT C_PWD FROM C WHERE C_ID=#{c_id}
-	</select>
-
-	<select id="getMemberInfo" parameterType="String"
-		resultType="customer">
-		SELECT * FROM CINFO WHERE C_ID=#{c_id}
-	</select>
-
-	<select id="hashMapTest" parameterType="Map" resultType="int">
-		SELECT COUNT(*) FROM C WHERE C_ID=#{c_id} AND C_PWD=#{c_pwd}
-	</select>
-
-	<select id="hashMapTest2" parameterType="String"
-		resultType="HashMap">
-		SELECT * FROM CINFO WHERE C_ID=#{c_id}
-	</select>
-
 </mapper>

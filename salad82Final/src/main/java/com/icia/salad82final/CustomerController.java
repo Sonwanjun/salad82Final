@@ -25,11 +25,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerManagement cm;
 	
-	@RequestMapping(value = "/customerInsert", method = RequestMethod.POST) //일반 회원가입
-	public ModelAndView customerInsert(Customer ct) {
-		mav=cm.customerInsert(ct);
-		return mav;
-	}
+
 	
 
 	@RequestMapping(value = "/cMyPage", method = RequestMethod.GET)  //구매자 마이페이지
@@ -43,16 +39,25 @@ public class CustomerController {
 	@ResponseBody
 	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
 	public int postIdCheck(HttpServletRequest req) throws Exception {
-		 
-	 String c_id = req.getParameter("c_id");
-	 Customer idCheck = cm.idCheck(c_id);
-	 System.out.println("id = "+c_id);
-	 int result=0;
-	 
-	 if(idCheck != null) {
-	  result = 1;
-	 } 
-	 
-	 return result;
+
+		String c_id = req.getParameter("c_id");
+		Customer idCheck = cm.idCheck(c_id);
+		System.out.println("id = " + c_id);
+		int result = 0;
+		
+
+		if (idCheck != null) {
+			result = 1;
+		}
+
+		return result;
 	}
+
+	
+	@RequestMapping(value = "/customerInsert", method = RequestMethod.POST) //일반 회원가입
+	public ModelAndView customerInsert(Customer ct) {
+		mav=cm.customerInsert(ct);
+		return mav;
+	}
+	
 }
