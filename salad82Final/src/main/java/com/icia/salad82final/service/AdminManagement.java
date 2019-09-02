@@ -225,23 +225,44 @@ public class AdminManagement {
 		return mav;
 	}
 
-	public String addCategory(String dbViewName, String category) {
+	@Transactional
+	public String addFirstCategory(String dbViewName, String category) {
 		
 		String json = null;
 		
-		if(dbViewName.equals("CF")) { //추가하려는 재료 분류가 대분류일때
-			HashMap<String, String> param = new HashMap<String, String>();
-			param.put("dbViewName", dbViewName);
-			param.put("category", category);
-			if(aDao.addFirstCategory(param)) { //대분류 추가를 성공했을 경우
-				List<Category> first = aDao.getFirstIngrCat(); 
-				Category count = aDao.getIngrCount();
-				
-				HashMap<String, Object> result = new HashMap<String, Object>();
-				result.put("first", first);
-				result.put("count", count);
-				json = new Gson().toJson(result);
-			}
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("dbViewName", dbViewName);
+		param.put("category", category);
+		if(aDao.addFirstCategory(param)) { //대분류 추가를 성공했을 경우
+			List<Category> first = aDao.getFirstIngrCat(); 
+			Category count = aDao.getIngrCount();
+
+			HashMap<String, Object> result = new HashMap<String, Object>();
+			result.put("first", first);
+			result.put("count", count);
+			json = new Gson().toJson(result);
+		}
+		
+		return json;
+	}
+	@Transactional
+	public String addSecondCategory(String dbViewName, String category, int cf_code) {
+		
+		String json = null;
+		
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("dbViewName", dbViewName);
+		param.put("category", category);
+		System.out.println("category의 값은? " + category);
+		param.put("cf_code", cf_code);
+		if(aDao.addSecondCategory(param)) { //소분류 추가를 성공했을 경우
+			List<Category> second = aDao.getSecondIngrCat();
+			Category count = aDao.getIngrCount();
+			
+			HashMap<String, Object> result = new HashMap<String, Object>();
+			result.put("second", second);
+			result.put("count", count);
+			json = new Gson().toJson(result);
 		}
 		
 		return json;

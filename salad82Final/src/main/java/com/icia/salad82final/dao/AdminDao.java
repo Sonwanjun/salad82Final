@@ -43,6 +43,7 @@ public interface AdminDao {
 	Category getIngrCount();
 
 	boolean addFirstCategory(HashMap<String, String> param);
+	boolean addSecondCategory(HashMap<String, Object> param);
 
 	// 암호화 되지 않은 비밀번호 암호화
 	/*

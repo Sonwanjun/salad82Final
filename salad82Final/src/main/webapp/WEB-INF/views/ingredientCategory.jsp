@@ -66,8 +66,12 @@
 		border : 2px solid yellow;
 		width : 150px;
 	}
-	.btArea input[type='text'] {
+	#fName {
 		width : 270px;
+		height : 25px;
+	}
+	#sName, #fNameList {
+		width : 130px;
 		height : 25px;
 	}
 	.btArea input[type='button']:not([id='delChecked']) {
@@ -81,6 +85,9 @@
 	}
 	input[type='checkbox']+font {
 		vertical-align : 5px;
+	}
+	input[type='button'] {
+		border-radius : 10px;
 	}
 	
 	#delChecked {
@@ -115,7 +122,7 @@
 				</tr>
 				<tr>
 					<td><input type="button" value="추가" onclick="addCategory('CF')"></td>
-					<td><input type="button" value="취소"></td>
+					<td><input type="button" value="취소" onclick="cleanText('CF')"></td>
 				</tr>
 			</table>
 		</form>
@@ -123,11 +130,11 @@
 	
 	<!---------- 소분류 영역 ---------->
 	<div class="divs">
-		<p>소분류</p>
+		<p id="sCount">소분류(${count.cs_count })</p>
 		
 		<form action="어디로갈까" method="get">
-			<div class="listArea">	<!-- 분류 리스트가 뜰 영역 -->
-				<table>
+			<div class="listArea">	<!-- 소분류 리스트가 뜰 영역 -->
+				<table id="sList">
 					<c:forEach var="list" items="${second }">
 						<tr>
 							<td><input type="checkbox" name="csCode" value="${list.cs_code }"></td>
@@ -140,12 +147,19 @@
 			
 			<table class="btArea">
 				<tr>
-					<td colspan="2"><input type="text" placeholder="추가할 소분류"></td>
+					<td colspan="2">
+						<select id="fNameList">
+							<c:forEach var="list" items="${first }">
+								<option value="${list.cf_code }">${list.cf_name }</option>
+							</c:forEach>
+						</select>
+						<input type="text" id="sName" placeholder="추가할 소분류">
+					</td>
 					<td rowspan="2"><input type="button" id="delChecked" value="체크항목삭제"></td>
 				</tr>
 				<tr>
-					<td><input type="button" value="추가"></td>
-					<td><input type="button" value="취소"></td>
+					<td><input type="button" value="추가" onclick="addCategory('CS')"></td>
+					<td><input type="button" value="취소" onclick="cleanText('CS')"></td>
 				</tr>
 			</table>
 		</form>
@@ -153,13 +167,17 @@
 </body>
 <script>
 	function addCategory(dbViewName){
-		var category;
+		var category; //추가할 대분류or소분류명을 담을 변수
 		if(dbViewName=='CF'){
-			category = document.getElementById('fName').value;
-			$('#fName').val('');
+			category = $('#fName').val(); //val에 파라미터가 없으면 해당 요소의 값을 가져옴
+			$('#fName').val(''); //val에 파라미터가 있으면 값을 가져오지 않고 반대로 해당 요소의 값을 파라미터로 대체함
+			if(category==''){
+				alert('추가할 대분류명을 입력하세요');
+				return false;
+			}
 			$.ajax({
 				type : 'get',
-				url : 'ajax/addCategory',
+				url : 'ajax/addFirstCategory',
 				contentType : 'application/json; charset=UTF-8',
 				data : {'dbViewName':dbViewName , 'category':category},
 				dataType : 'json',
@@ -167,26 +185,64 @@
 					alert('대분류 추가 성공');
 					
 					var fList = '';
-					//추가 후의 대분류리스트 표시부분 다시 만들기
+					//추가 후의 대분류리스트 표시부분 수정하기
 					for(var i=0; i<data.first.length; i++){
 						fList += '<tr><td><input type="checkbox" name="cfCode" value="'+data.first[i].cf_code
 								+'"></td><td>'+data.first[i].cf_name+'</td><td>빼기자리</td></tr>';
 					};
-					//대분류 숫자 수정
+					//대분류 갯수 수정
 					var fCount = '대분류('+data.count.cf_count+')';
+					//소분류쪽 셀렉트박스 수정
+					var fNameList = '';
+					for(var i=0; i<data.first.length; i++){
+						fNameList += '<option value="'+data.first[i].cf_code+'">'+data.first[i].cf_name+'</option>';
+					}
+					
 					$('#fList').html(fList);
 					$('#fCount').html(fCount);
+					$('#fNameList').html(fNameList);
 				},
 				error : function(error){
 					alert('대분류 추가 실패');
 				}
 			});
-		} else {
-			//소분류 입력칸의 값 처리하도록 만들기
+		} else if(dbViewName=='CS') {
+			category = $('#sName').val();
+			$('#sName').val('');
+			if(category==''){
+				alert('추가할 소분류명을 입력하세요');
+				return false;
+			}
+			var cf_code = $('#fNameList option:selected').val(); //대분류 셀렉트박스에서 선택된 값을 가져옴
+			$.ajax({
+				type : 'get',
+				url : 'ajax/addSecondCategory',
+				contentType : 'application/json; charset=UTF-8',
+				data : {'dbViewName':dbViewName , 'category':category , 'cf_code':cf_code},
+				dataType : 'json',
+				success : function(data){
+					alert('소분류 추가 성공');
+					
+					var sList = '';
+					//추가 후의 소분류리스트 표시부분 수정
+					for(var i=0; i<data.second.length; i++){
+						sList += '<tr><td><input type="checkbox" name="cs_code" value="'+data.second[i].cs_code
+								+'"></td><td>'+data.second[i].cs_name+'</td><td>빼기자리</td></tr>';
+					};
+					//소분류 갯수 수정
+					var sCount = '소분류('+data.count.cs_count+')';
+					
+					$('#sList').html(sList);
+					$('#sCount').html(sCount);
+				},
+				error : function(error){
+					alert('소분류 추가 실패');
+				}
+			});
 		}
 	}
 
-	function deleteCheckedCategory(){ //분류 삭제기능 만들어야함
+	function deleteCheckedCategory(){ //체크된 분류들 삭제기능. 만들어야함
 		
 		var go = confirm('값 확인?');
 		if(go==true){
@@ -210,6 +266,15 @@
 			});
 		}
 		
+	};
+	
+	function cleanText(dbViewName){
+		if(dbViewName=='CF'){
+			$('#fName').val('');
+		}
+		if(dbViewName=='CS'){
+			$('#sName').val('');
+		}
 	};
 </script>
 </html>
