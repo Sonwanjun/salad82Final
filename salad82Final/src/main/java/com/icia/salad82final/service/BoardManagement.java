@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.icia.salad82final.bean.Board;
@@ -43,13 +44,7 @@ public class BoardManagement {
 		return mav;
 		// TODO 게시판상세 추후 추가
 	}
-
-	public ModelAndView goMyRecipeWrite() {
-		mav = new ModelAndView();
-		mav.setViewName("/myRecipeWrite");
-		return mav;
-	}
-
+	
 	private String getPaging(int pNum, String infoName) {
 		int maxNum = bDao.getBoardCount();
 		int listCount = 5;

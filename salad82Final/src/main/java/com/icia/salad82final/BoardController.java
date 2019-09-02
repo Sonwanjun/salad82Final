@@ -2,6 +2,8 @@ package com.icia.salad82final;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,13 +30,13 @@ public class BoardController {
 
 	}
 
-	@RequestMapping(value = "/myRecipeWrite", method = RequestMethod.GET)
-	public ModelAndView getWriteFrm() {
-		mav=new ModelAndView();
+	@RequestMapping(value = "/myRecipeWrite")
+	public ModelAndView getWriteFrm(HttpServletRequest request) {
+		ModelAndView mav= new ModelAndView();
 		mav.setViewName("myRecipeWrite");
 		return mav;	
 	}
-
+	
 	@RequestMapping(value = "/boardListCount")
 	public ModelAndView getBoardListCount(Integer pNum) {
 		// pageNum = pNum

@@ -184,8 +184,8 @@ td {
 
 	<div id="search" Style="text-align: center">
 		<form id="searchFrm" action="searchList" method="get">
-			<input type="hidden" name="searchNum" value="${bList}" /> <input
-				type="text" name="searchWord" size="15" maxlength="30"
+			<input type="hidden" name="searchNum" value="${bList}" /> 
+			<input type="text" name="searchWord" size="15" maxlength="30"
 				style="width: 1000px" /> <input type="submit" value="검색" />
 		</form>
 	</div>
@@ -213,9 +213,10 @@ td {
 		<div>${paging}
 		</div>
 	</div>
-	<div id="myRecipeWrite">
-	 <a href="myRecipeWrite">글쓰기</a></div>
-
+	<div id="myRecipeWriteHtml">
+	<input type=button value="글쓰기" Onclick="window.location='myRecipeWrite'">
+	<form name=myRecipeWrite method=post action="myRecipeWrite"></form>
+	</div>
 	<br>
 	<br>
 
