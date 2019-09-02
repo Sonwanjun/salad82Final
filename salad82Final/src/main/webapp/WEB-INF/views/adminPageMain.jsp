@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,11 @@
 <title>관리자 페이지</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
+@font-face{
+            font-family: 'SQUARE';
+            src:url('resources/NNsquare.ttf') format('truetype');
+}
+
 body {
 	width: 100%;
 	height: 100%;
@@ -138,7 +144,7 @@ body {
 						<td onclick="sellerInfo()">판매자/구매자 정보</td>
 					</tr>
 					<tr>
-						<td>DIY 재료 분류 관리</td>
+						<td onclick="goIngrPage()">DIY 재료 분류 관리</td>
 					</tr>
 					<tr>
 						<td>메뉴3</td>
@@ -215,9 +221,27 @@ body {
 				$('#ajaxArea').html(data);
 			},
 			error : function(error){
-				alert('에러가 한가득');
+				alert('regProdInfo의 에러');
+				console.log(error);
 			}
 		});
 	};
+	
+	function goIngrPage(){
+		alert('goIngrPage 실행');
+		$.ajax({
+			type : 'get',
+			url : 'ingredientCategory',
+			dataType : 'html',
+			success : function(data){
+				alert('goIngrPage 성공');
+				$('#ajaxArea').html(data);
+			},
+			error : function(error){
+				alert('goIngrPage의 에러');
+				console.log(error);
+			}
+		});
+	}
 </script>
 </html>

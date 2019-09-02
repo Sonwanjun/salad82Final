@@ -16,11 +16,9 @@ public class AdminController {
 	ModelAndView mav;
 	
 	@RequestMapping(value = "/adminPageMain")
-	public ModelAndView adminPageMain() {
+	public String adminPageMain() {	
 		
-		mav = new ModelAndView();
-		mav.setViewName("adminPageMain");
-		return mav;
+		return "adminPageMain";
 		
 	}
 	
@@ -61,5 +59,17 @@ public class AdminController {
 		mav = am.getPurcProdInfo(c_id, pNum);
 		return mav;
 	}
+	
+	@RequestMapping(value = "/ingredientCategory")
+	public ModelAndView getIngrCategoryInfo() {
+		mav = am.getIngrCategoryInfo();
+		return mav;
+	}
+	
+	// 암호화 되지 않은 비밀번호 암호화
+	/*
+	 * @RequestMapping(value = "/pwdChange") public String change(String table) {
+	 * am.pwdChange(table); return table; }
+	 */
 
 }

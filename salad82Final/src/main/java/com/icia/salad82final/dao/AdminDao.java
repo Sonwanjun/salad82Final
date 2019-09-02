@@ -3,6 +3,8 @@ package com.icia.salad82final.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.icia.salad82final.bean.Admin;
+import com.icia.salad82final.bean.Category;
 import com.icia.salad82final.bean.Customer;
 import com.icia.salad82final.bean.Order;
 import com.icia.salad82final.bean.PD;
@@ -33,4 +35,21 @@ public interface AdminDao {
 	List<Integer> getCustomerTotals(String c_id);
 
 	int getCustDetailTotalCount(String c_id);
+
+	List<Category> getFirstIngrCat();
+	
+	List<Category> getSecondIngrCat();
+
+	Category getIngrCount();
+
+	boolean addFirstCategory(HashMap<String, String> param);
+
+	// 암호화 되지 않은 비밀번호 암호화
+	/*
+	 * int getCount(String table);
+	 * 
+	 * List<Admin> getIds(String table);
+	 * 
+	 * int pwdChange(HashMap<String, String> param);
+	 */
 }

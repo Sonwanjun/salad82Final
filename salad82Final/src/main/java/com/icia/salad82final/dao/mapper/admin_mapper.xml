@@ -75,5 +75,30 @@
 	<select id="getCustDetailTotalCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM C_PURC_PROD WHERE C_ID=#{value}
 	</select>
+	
+	<select id="getFirstIngrCat" resultType="category">
+		SELECT * FROM CF
+	</select>
+	<select id="getSecondIngrCat" resultType="category">
+		SELECT * FROM CS
+	</select>
+	<select id="getIngrCount" resultType="category">
+		SELECT * FROM INGR_COUNT
+	</select>
+	
+	<insert id="addFirstCategory" parameterType="HashMap">
+		INSERT INTO ${dbViewName} VALUES((SELECT MAX(${dbViewName}_CODE)+1 FROM ${dbViewName}), #{category})
+	</insert>
+	
+	<!-- 암호화 되지 않은 비밀번호 암호화 -->
+	<!-- <select id="getCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM ${value}
+	</select>
+	<select id="getIds" parameterType="String" resultType="admin">
+		SELECT ${value}_ID, ${value}_PWD FROM ${value}
+	</select>
+	<update id="pwdChange" parameterType="HashMap">
+		UPDATE ${table} SET ${table}_PWD='${pwd}' WHERE ${table}_ID=#{id}
+	</update> -->
 
 </mapper><!-- 훑 -->

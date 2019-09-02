@@ -81,9 +81,25 @@
 	</table>
 	
 	<div align="center">${paging }</div>
+	<!-- <button onclick="pwdChange()">비밀번호 암호화</button> -->
 	
 </body>
 <script>
+	/* function pwdChange(){
+		var table = prompt('비밀번호를 암호화 할 테이블 Alias를 입력하세요');
+		$.ajax({
+			type : 'get',
+			url : 'pwdChange',
+			data : {table:table},
+			success : function(data){
+				alert('성공');
+				alert(data);
+			},
+			error : function(){
+				alert('실패');
+			}
+		});
+	}; */
 
 	function consumerInfo(pNum){
 		$.ajax({

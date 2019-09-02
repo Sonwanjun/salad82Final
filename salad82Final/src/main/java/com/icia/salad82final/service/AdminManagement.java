@@ -4,10 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.icia.salad82final.bean.Admin;
+import com.icia.salad82final.bean.Category;
 import com.icia.salad82final.bean.Customer;
 import com.icia.salad82final.bean.Order;
 import com.icia.salad82final.bean.PD;
@@ -27,10 +31,9 @@ public class AdminManagement {
 
 		mav = new ModelAndView();
 		String view = null;
-		List<Seller> sList = null;
 		int pageNum = (pNum == null) ? 1 : pNum;
+		List<Seller> sList = aDao.getSellerInfo(pageNum);
 		
-		sList = aDao.getSellerInfo(pageNum);
 		if(sList != null) {
 			view = "sellerInfo";
 			mav.addObject("sList", sList);
@@ -177,8 +180,7 @@ public class AdminManagement {
 		List<Order> list = aDao.getPurcProdInfo(param); //해당 구매자, 해당 페이지에 맞는 구매정보 가져오기
 		
 		if(infoDetail!=null && list!=null) {
-			view = "ingredientCategory"; //TODO 다 썼으면 바꿔야함
-			//view = "purcProdInfo";
+			view = "purcProdInfo";
 			
 			mav.addObject("infoDetail", infoDetail);
 			mav.addObject("list", list);
@@ -203,4 +205,57 @@ public class AdminManagement {
 		
 		return mav;
 	}
+
+	@Transactional
+	public ModelAndView getIngrCategoryInfo() {
+		mav = new ModelAndView();
+		String view = null;
+		
+		List<Category> first = aDao.getFirstIngrCat();
+		List<Category> second = aDao.getSecondIngrCat();
+		Category count = aDao.getIngrCount(); //대분류와 소분류의 항목 수를 받아옴
+		
+		if(first!=null && count!=null) {
+			view = "ingredientCategory";
+			mav.addObject("first", first);
+			mav.addObject("second", second);
+			mav.addObject("count", count);
+		}
+		
+		return mav;
+	}
+
+	public String addCategory(String dbViewName, String category) {
+		
+		String json = null;
+		
+		if(dbViewName.equals("CF")) { //추가하려는 재료 분류가 대분류일때
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("dbViewName", dbViewName);
+			param.put("category", category);
+			if(aDao.addFirstCategory(param)) { //대분류 추가를 성공했을 경우
+				List<Category> first = aDao.getFirstIngrCat(); 
+				Category count = aDao.getIngrCount();
+				
+				HashMap<String, Object> result = new HashMap<String, Object>();
+				result.put("first", first);
+				result.put("count", count);
+				json = new Gson().toJson(result);
+			}
+		}
+		
+		return json;
+	}
+	
+	// 암호화 되지 않은 비밀번호 암호화
+	/*
+	 * @Transactional public void pwdChange(String table) { int count =
+	 * aDao.getCount(table); List<Admin> ids = aDao.getIds(table);
+	 * BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); HashMap<String,
+	 * String> param = new HashMap<String, String>(); param.put("table", table);
+	 * 
+	 * for(int i=0; i<count; i++) { param.put("id", ids.get(i).getA_id());
+	 * param.put("pwd", encoder.encode(ids.get(i).getA_pwd()));
+	 * aDao.pwdChange(param); } System.out.println("끝"); }
+	 */
 }
