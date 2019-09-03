@@ -31,12 +31,14 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/myRecipeWrite")
-	public ModelAndView getWriteFrm(HttpServletRequest request) {
-		ModelAndView mav= new ModelAndView();
+	public ModelAndView getWriteFrm() {
+		mav = new ModelAndView();
+		mav = bm.getCategory();
 		mav.setViewName("myRecipeWrite");
-		return mav;	
-	}
-	
+		return mav;
+	}// 띄우고자 하는 정보가 같은 뷰에(ex:myRecipeWrite.jsp) 있을땐 파라메터 타입이 없을시 굳이 요청 안해도됨
+		// DB(SQL)에 있는 정보를 이용할땐 () <== 빈깡통으로 만들어도 됨
+
 	@RequestMapping(value = "/boardListCount")
 	public ModelAndView getBoardListCount(Integer pNum) {
 		// pageNum = pNum
@@ -54,6 +56,14 @@ public class BoardController {
 
 		mav = bm.getSearchList(pNum, searchWord);
 
+		return mav;
+
+	}
+
+	@RequestMapping(value = "/categoryCall", method = RequestMethod.GET)
+	public ModelAndView getCategory() {
+		System.out.println();
+		mav = bm.getCategory();
 		return mav;
 
 	}

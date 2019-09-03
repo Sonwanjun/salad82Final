@@ -2,18 +2,14 @@ package com.icia.salad82final.service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.icia.salad82final.bean.Board;
-import com.icia.salad82final.bean.Seller;
+import com.icia.salad82final.bean.Category;
+import com.icia.salad82final.dao.AdminDao;
 import com.icia.salad82final.dao.BoardDao;
 import com.icia.salad82final.userClass.PagingForAjax;
 
@@ -44,7 +40,7 @@ public class BoardManagement {
 		return mav;
 		// TODO 게시판상세 추후 추가
 	}
-	
+
 	private String getPaging(int pNum, String infoName) {
 		int maxNum = bDao.getBoardCount();
 		int listCount = 5;
@@ -98,6 +94,17 @@ public class BoardManagement {
 		}
 		mav.setViewName(view);
 		System.out.println("bcList" + bcList);
+		return mav;
+	}
+
+	public ModelAndView getCategory() {
+		mav = new ModelAndView();
+
+		List<Category> mcList = bDao.getCategory();
+		System.out.println("mcList00" + mcList);
+
+		mav.addObject("mcList", mcList);
+		System.out.println("mcList" + mcList);
 		return mav;
 	}
 

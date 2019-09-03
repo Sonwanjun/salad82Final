@@ -31,7 +31,7 @@ h1 {
 	padding: 20px 210px 20px;
 }
 
-#footer {
+.footer {
 	width: 100%;
 	height: 120px;
 	position: absolute;
@@ -40,8 +40,13 @@ h1 {
 	font-size: 16;
 }
 
+#footer {
+	background: #009900;
+}
+
 #WriteTitle {
-	margin-left: 5px; margin-top : 15px;
+	margin-left: 5px;
+	margin-top: 15px;
 	padding: 50px;
 	text-align: center;
 	width: 100%;
@@ -52,7 +57,39 @@ h1 {
 #titleAndContents {
 	margin-left: 5px;
 	margin-top: 15px;
-	padding: 50px;
+	padding: 20px;
+	text-align: center;
+	width: 100%;
+	border: 1px solid #009900;
+}
+
+#putTitle {
+	text-align: center;
+	width: 1300px;
+	height: 30px;
+	font-size: 25px;
+}
+
+#contentCook {
+	margin-left: 5px;
+	margin-top: 15px;
+	padding: 16px;
+	text-align: center;
+	width: 100%;
+	border: 1px solid #009900;
+}
+
+#putContentCook {
+	text-align: center;
+	width: 1300px;
+	height: 250px;
+	font-size: 12px;
+}
+
+#categoryTable {
+	margin-left: 5px;
+	margin-top: 15px;
+	padding: 20px;
 	text-align: center;
 	width: 100%;
 	border: 1px solid #009900;
@@ -61,8 +98,6 @@ h1 {
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="resources/js/jquery.serializeObject.js"></script>
-
 
 <body>
 	<p id="row">
@@ -92,8 +127,40 @@ h1 {
 	</table>
 	<table id="titleAndContents">
 		<tr>
-			<th border="solid 1px">레시피 제목</th>
-			<th><input type="text" height="50px" size="20"></th>
+			<th width="130px" ,height="150px">레시피 제목</th>
+			<th><textarea id="putTitle" style="resize: none;"></textarea></th>
+	</table>
+	<table id="contentCook">
+		<tr>
+			<th width="130px" ,height="150px">요리소개</th>
+			<th><textarea id="putContentCook" rows="10" cols="5"
+					style="resize: none;"></textarea>
+	</table>
+	<table id="categoryTable">
+		<tr>
+			<th width="130px" ,height="150px">카테고리</th>
+			<th>육류: <select name="selectBox" id="selectBox"
+				style="width: 80px;" class="select_00">
+					<c:forEach var="Category" items="${mcList}">
+						<option value="${Category.cs_name}">${Category.cs_name}</option>
+					</c:forEach>
+			</select></th>
+			<!--var를 var='Category'라고 선언했을때  대소문자는 같아야한다$('***'.'sql컬럼명(cs_name))'-->
+
+			<th>생선류:<select name="selectBox" id="selectBox"
+				style="width: 80px;" class="select_01">
+					<c:forEach var="Category1" items="${mcList1}">
+						<option value="${Category1.cs_name}">${Category1.cs_name}</option>
+					</c:forEach>
+			</select></th>
+
+			<th>채소류<select name="selectBox" id="selectBox"
+				style="width: 80px;" class="select_02">
+					<c:forEach var="Category2" items="${mcList2}">
+						<option value="${Category2.cs_name}">${Category2.cs_name}</option>
+					</c:forEach>
+			</select></th>
+		</tr>
 	</table>
 
 
