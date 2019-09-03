@@ -89,6 +89,16 @@
 	<insert id="addFirstCategory" parameterType="HashMap">
 		INSERT INTO ${dbViewName} VALUES((SELECT MAX(${dbViewName}_CODE)+1 FROM ${dbViewName}), #{category})
 	</insert>
+	<insert id="addSecondCategory" parameterType="HashMap">
+		INSERT INTO ${dbViewName} VALUES((SELECT MAX(${dbViewName}_CODE)+1 FROM ${dbViewName}), ${cf_code}, #{category})
+	</insert>
+	
+	<delete id="deleteIngrCategory" parameterType="HashMap">
+		DELETE ${dbViewName} WHERE ${dbViewName}_CODE IN
+			<foreach collection="codes" item="list" open="(" close=")" separator=",">
+				#{list}
+			</foreach>
+	</delete>
 	
 	<!-- 암호화 되지 않은 비밀번호 암호화 -->
 	<!-- <select id="getCount" parameterType="String" resultType="int">

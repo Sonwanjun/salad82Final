@@ -4,13 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.icia.salad82final.bean.Admin;
 import com.icia.salad82final.bean.Category;
 import com.icia.salad82final.bean.Customer;
 import com.icia.salad82final.bean.Order;
@@ -222,6 +220,8 @@ public class AdminManagement {
 			mav.addObject("count", count);
 		}
 		
+		mav.setViewName(view);
+		
 		return mav;
 	}
 
@@ -253,7 +253,6 @@ public class AdminManagement {
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("dbViewName", dbViewName);
 		param.put("category", category);
-		System.out.println("category의 값은? " + category);
 		param.put("cf_code", cf_code);
 		if(aDao.addSecondCategory(param)) { //소분류 추가를 성공했을 경우
 			List<Category> second = aDao.getSecondIngrCat();
@@ -266,6 +265,15 @@ public class AdminManagement {
 		}
 		
 		return json;
+	}
+
+	public void deleteIngrCategory(List<Integer> codes, String dbViewName) {
+
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("codes", codes);
+		param.put("dbViewName", dbViewName);
+		aDao.deleteIngrCategory(param);
+		
 	}
 	
 	// 암호화 되지 않은 비밀번호 암호화

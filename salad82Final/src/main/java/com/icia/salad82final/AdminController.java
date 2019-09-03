@@ -1,10 +1,14 @@
 package com.icia.salad82final;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.icia.salad82final.service.AdminManagement;
 
 @Controller
@@ -64,6 +68,16 @@ public class AdminController {
 	public ModelAndView getIngrCategoryInfo() {
 		mav = am.getIngrCategoryInfo();
 		return mav;
+	}
+	
+	@RequestMapping(value = "/deleteIngrCategory")
+	public String deleteIngrCategory(String json, String dbViewName) {
+
+		List<Integer> codes = new Gson().fromJson(json, List.class);
+		
+		am.deleteIngrCategory(codes, dbViewName);
+		
+		return "forward:ingredientCategory";
 	}
 	
 	// 암호화 되지 않은 비밀번호 암호화

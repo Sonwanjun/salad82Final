@@ -45,6 +45,8 @@ public interface AdminDao {
 	boolean addFirstCategory(HashMap<String, String> param);
 	boolean addSecondCategory(HashMap<String, Object> param);
 
+	void deleteIngrCategory(HashMap<String, Object> param);
+
 	// 암호화 되지 않은 비밀번호 암호화
 	/*
 	 * int getCount(String table);

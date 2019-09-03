@@ -94,6 +94,14 @@
 		width : 120px;
 		height : 90px;
 	}
+	
+	.divs img {
+		width : 25px;
+		height : 25px;
+	}
+	.divs img:hover {
+		cursor : pointer;
+	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -109,7 +117,7 @@
 						<tr>
 							<td><input type="checkbox" name="cfCode" value="${list.cf_code }"></td>
 							<td>${list.cf_name }</td>
-							<td>빼기자리</td>
+							<td><img src="resources/minusButton.png" alt="${list.cf_code }"></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -118,7 +126,7 @@
 			<table class="btArea">
 				<tr>
 					<td colspan="2"><input type="text" id="fName" placeholder="추가할 대분류"></td>
-					<td rowspan="2"><input type="button" id="delChecked" value="체크항목삭제"></td>
+					<td rowspan="2"><input type="button" id="delChecked" value="체크항목삭제" onclick="deleteChkCategory('CF')"></td>
 				</tr>
 				<tr>
 					<td><input type="button" value="추가" onclick="addCategory('CF')"></td>
@@ -139,7 +147,7 @@
 						<tr>
 							<td><input type="checkbox" name="csCode" value="${list.cs_code }"></td>
 							<td>${list.cs_name }</td>
-							<td>빼기자리</td>
+							<td><img src="resources/minusButton.png" alt="${list.cs_code }"></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -155,7 +163,7 @@
 						</select>
 						<input type="text" id="sName" placeholder="추가할 소분류">
 					</td>
-					<td rowspan="2"><input type="button" id="delChecked" value="체크항목삭제"></td>
+					<td rowspan="2"><input type="button" id="delChecked" value="체크항목삭제" onclick="deleteChkCategory('CS')"></td>
 				</tr>
 				<tr>
 					<td><input type="button" value="추가" onclick="addCategory('CS')"></td>
@@ -166,6 +174,15 @@
 	</div>
 </body>
 <script>
+	$('#fList img').click(function(event) {
+		var cf_code = $(event.target).attr('alt');
+		deleteChkCategory('CF',cf_code);
+	});
+	$('#sList img').click(function(event) {
+		var cs_code = $(event.target).attr('alt');
+		deleteChkCategory('CS',cs_code);
+	});
+	
 	function addCategory(dbViewName){
 		var category; //추가할 대분류or소분류명을 담을 변수
 		if(dbViewName=='CF'){
@@ -188,7 +205,8 @@
 					//추가 후의 대분류리스트 표시부분 수정하기
 					for(var i=0; i<data.first.length; i++){
 						fList += '<tr><td><input type="checkbox" name="cfCode" value="'+data.first[i].cf_code
-								+'"></td><td>'+data.first[i].cf_name+'</td><td>빼기자리</td></tr>';
+								+'"></td><td>'+data.first[i].cf_name+'</td><td>'
+								+'<img src="resources/minusButton.png" alt="'+data.first[i].cf_code+'"></td></tr>';
 					};
 					//대분류 갯수 수정
 					var fCount = '대분류('+data.count.cf_count+')';
@@ -227,13 +245,15 @@
 					//추가 후의 소분류리스트 표시부분 수정
 					for(var i=0; i<data.second.length; i++){
 						sList += '<tr><td><input type="checkbox" name="cs_code" value="'+data.second[i].cs_code
-								+'"></td><td>'+data.second[i].cs_name+'</td><td>빼기자리</td></tr>';
+								+'"></td><td>'+data.second[i].cs_name+'</td><td>'
+								+'<img src="resources/minusButton.png" alt="'+data.second[i].cs_code+'"></td></tr>';
 					};
 					//소분류 갯수 수정
 					var sCount = '소분류('+data.count.cs_count+')';
 					
 					$('#sList').html(sList);
 					$('#sCount').html(sCount);
+					$('#fNameList option:first').prop('selected',true);
 				},
 				error : function(error){
 					alert('소분류 추가 실패');
@@ -242,28 +262,76 @@
 		}
 	}
 
-	function deleteCheckedCategory(){ //체크된 분류들 삭제기능. 만들어야함
-		
-		var go = confirm('값 확인?');
-		if(go==true){
-			var array = new Array();
-			$('input[name="cfCode"]:checked').each(function(){ 
-				array.push($(this).val());
-			});
-			var jsonStr = JSON.stringify(array);
+	function deleteChkCategory(dbViewName, solo){ //solo : 체크를 통하지 않고 개별항목 삭제시 전달받을 분류 코드
+
+		if(dbViewName=='CF'){ /////////////////삭제하려는 분류가 대분류일때
+			
+			if($('input[name="cfCode"]:checked').length==0 && solo==null){ //체크된 대분류 항목이 없다면
+				alert('선택한 대분류가 없습니다');
+				return false;
+			}
+			if(confirm('대분류 삭제시 해당 대분류의 하위 분류(소분류)도 같이 삭제됩니다.삭제하시겠습니까?')==false){
+				return false;
+			}
+			var c;
+			if(solo==null){ //체크박스로 삭제시
+				c = new Array();
+				$('input[name="cfCode"]:checked').each(function(){ 
+					c.push($(this).val()); //체크된 대분류 항목의 코드를 배열에 넣음
+				});
+			} else { //단일 항목 삭제시
+				c = new Array();
+				c.push(solo);
+			}
+			var json = JSON.stringify(c);
+			alert('코드 배열에 넣기 성공');
 			$.ajax({
-				type : 'get',
-				url : 'ajax/deleteCategory',
-				contentType : 'application/json',
-				data : jsonStr,
-				dataType : 'json',
+				type : 'post',
+				url : 'deleteIngrCategory',
+				data : {'json':json , 'dbViewName':dbViewName},
+				dataType : 'html',
 				success : function(data){
-					
+					alert('대분류 지우기 성공');
+					$('#ajaxArea').html(data);
 				},
 				error : function(error){
 					alert('체크한 대분류 지우기 실패');
 				}
 			});
+			
+		} else if(dbViewName=='CS') { /////////////////삭제하려는 분류가 소분류일때
+			
+			if($('input[name="csCode"]:checked').length==0 && solo==null){ //체크된 소분류 항목이 없다면
+				alert('선택한 소분류가 없습니다');
+				return false;
+			}
+			if(confirm('선택한 소분류를 삭제하시겠습니까?')==false){
+				return false;
+			}
+			var c = new Array();
+			if(solo==null){ //체크박스로 삭제시
+				$('input[name="csCode"]:checked').each(function(){ 
+					c.push($(this).val()); //체크된 소분류 항목의 코드를 배열에 넣음
+				});
+			} else { //단일 항목 삭제시
+				c.push(solo);
+			}
+			var json = JSON.stringify(c);
+			alert('코드 배열에 넣기 성공');
+			$.ajax({
+				type : 'post',
+				url : 'deleteIngrCategory',
+				data : {'json':json , 'dbViewName':dbViewName},
+				dataType : 'html',
+				success : function(data){
+					alert('소분류 지우기 성공');
+					$('#ajaxArea').html(data);
+				},
+				error : function(error){
+					alert('체크한 소분류 지우기 실패');
+				}
+			});
+			
 		}
 		
 	};
