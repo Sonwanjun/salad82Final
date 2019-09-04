@@ -20,5 +20,7 @@ public class PD {
 	private String p_contents;
 	private String p_permission;
 	
+	private String pi_name; //사진 등록중,,
+	
 }
 

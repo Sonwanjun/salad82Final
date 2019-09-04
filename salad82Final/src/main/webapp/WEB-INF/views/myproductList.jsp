@@ -5,114 +5,144 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <style>
-@import url('http://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
-@import url('http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');
+@import
+	url('http://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
+
+@import
+	url('http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css')
+	;
+
 body {
-  font-family: 'Open Sans', sans-serif;
-  padding: 0;
-  margin: 0;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+	font-family: 'Open Sans', sans-serif;
+	padding: 0;
+	margin: 0;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
 }
+
 .sidebar-toggle {
-  margin-left: -240px;
+	margin-left: -240px;
 }
+
 .sidebar {
-  width: 240px;
-  height: 650px;
-  background: #293949;
-  position: absolute;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  z-index: 100;
+	width: 240px;
+	height: 650px;
+	background: #293949;
+	position: absolute;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	z-index: 100;
 }
-.sidebar #leftside-navigation ul,
-.sidebar #leftside-navigation ul ul {
-  margin: -2px 0 0;
-  padding: 0;
+
+.sidebar #leftside-navigation ul, .sidebar #leftside-navigation ul ul {
+	margin: -2px 0 0;
+	padding: 0;
 }
+
 .sidebar #leftside-navigation ul li {
-  list-style-type: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	list-style-type: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
-.sidebar #leftside-navigation ul li.active > a {
-  color: #1abc9c;
+
+.sidebar #leftside-navigation ul li.active>a {
+	color: #1abc9c;
 }
+
 .sidebar #leftside-navigation ul li.active ul {
-  display: block;
+	display: block;
 }
+
 .sidebar #leftside-navigation ul li a {
-  color: #aeb2b7;
-  text-decoration: none;
-  display: block;
-  padding: 18px 0 18px 25px;
-  font-size: 12px;
-  outline: 0;
-  -webkit-transition: all 200ms ease-in;
-  -moz-transition: all 200ms ease-in;
-  -o-transition: all 200ms ease-in;
-  -ms-transition: all 200ms ease-in;
-  transition: all 200ms ease-in;
+	color: #aeb2b7;
+	text-decoration: none;
+	display: block;
+	padding: 18px 0 18px 25px;
+	font-size: 12px;
+	outline: 0;
+	-webkit-transition: all 200ms ease-in;
+	-moz-transition: all 200ms ease-in;
+	-o-transition: all 200ms ease-in;
+	-ms-transition: all 200ms ease-in;
+	transition: all 200ms ease-in;
 }
+
 .sidebar #leftside-navigation ul li a:hover {
-  color: #1abc9c;
+	color: #1abc9c;
 }
+
 .sidebar #leftside-navigation ul li a span {
-  display: inline-block;
+	display: inline-block;
 }
+
 .sidebar #leftside-navigation ul li a i {
-  width: 20px;
+	width: 20px;
 }
-.sidebar #leftside-navigation ul li a i .fa-angle-left,
-.sidebar #leftside-navigation ul li a i .fa-angle-right {
-  padding-top: 3px;
+
+.sidebar #leftside-navigation ul li a i .fa-angle-left, .sidebar #leftside-navigation ul li a i .fa-angle-right
+	{
+	padding-top: 3px;
 }
+
 .sidebar #leftside-navigation ul ul {
-  display: none;
+	display: none;
 }
+
 .sidebar #leftside-navigation ul ul li {
-  background: #23313f;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  border-bottom: none;
+	background: #23313f;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+	border-bottom: none;
 }
+
 .sidebar #leftside-navigation ul ul li a {
-  font-size: 12px;
-  padding-top: 13px;
-  padding-bottom: 13px;
-  color: #aeb2b7;
+	font-size: 12px;
+	padding-top: 13px;
+	padding-bottom: 13px;
+	color: #aeb2b7;
 }
 
-h1{
-text-align:center;
+h1 {
+	text-align: center;
 }
-p
-{
-text-align:right;
+
+p {
+	text-align: right;
 }
+
 #header {
-    width: 100%;
-    text-align:center;
-    background:#009900;
-    font-size: 20;
-    padding:1%;
-}      
-
-#footer
-{
-   width: 100%;
-   height: 120px;
-   position: absolute;
-   bottom:0;
-   background: #009900;
-   font-size: 16;
+	width: 100%;
+	text-align: center;
+	background: #009900;
+	font-size: 20;
+	padding: 1%;
 }
 
+#footer {
+	width: 100%;
+	height: 120px;
+	position: absolute;
+	bottom: 0;
+	background: #009900;
+	font-size: 16;
+}
+
+#table {
+	display: table;
+	width: 100%;
+	position:absolute;
+	height:100%;
+	margin:10% auto;
+	top: 40%;
+	left: 50%;
+	margin: -50px 0 0 -50px;
+	line-height: 2;
+}
 
 </style>
 </head>
@@ -155,6 +185,59 @@ text-align:right;
     </ul>
   </div>
 </aside>
+	<form role="form" method="post" autocomplete="off">
+	<h1>상품 등록</h1>
+	<div id="table">
+		<div class="inputArea">
+		<label for="p_name">상품명</label>
+		&emsp;&nbsp;<input type="text" id="p_name" name="p_name" value=""/>
+		</div>
+		<div class="inputArea">
+		<label for="p_price">판매가</label>
+		&emsp;&nbsp;<input type="text" id="p_price" name="p_price" value=""/>
+		</div>
+		<div class="inputArea">
+		<label for="p_remain">상품 수량</label>
+		<input type="text" id="p_remain" name="p_remain" value=""/>
+		</div>
+	<!-- 	<div class="inputArea">
+		<label for="p_date">등록일</label>
+		&emsp;&nbsp;<input type="text" id="p_date" name="p_date" value=""/>
+		</div> -->
+		<div class="inputArea">
+		<label for="p_contens">상품 설명</label>
+		<input type="text" id="p_contents" name="p_contents" value=""
+		style="width:400px; height:100px;"/>
+		</div>
+		<!-- <div class="inputArea">
+		<label for="pi_name">이미지</label>
+		<input type="file" id="pi_name" name="file"/>
+		<div class="select_img"><img src=""/></div> -->
+		
+		
+<!-- 		<script>
+		$("#pi_name").change(function(){
+			if(this.files && this.files[0]) {
+				var reader = new FileReader;
+				reader.onload = function(data){
+					$(".select_img img").attr("src",data.target.result).width(500);
+				}
+				reader.readAsDataURL(this.files[0]);
+			}
+		});
+		</script> -->
+		
+		
+	<%-- 	<%=request.getRealPath("/") %>
+		</div> --%>
+		<div class="inputArea">
+			<button type="submit" id="register_btn" class="btn btn-primary">
+			등록
+			</button>
+		</div>
+	</div>	
+	</form>
+
 
 <div id="footer" align="center"><br>업체명: Salad82 | 사업자번호:123-45-6789<br>
                         주소: 인천 남구 학익동 663-1 태승빌딩 | 전화번호:032-123-4567<br>

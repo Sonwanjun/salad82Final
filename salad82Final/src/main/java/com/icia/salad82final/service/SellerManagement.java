@@ -2,12 +2,14 @@ package com.icia.salad82final.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.icia.salad82final.bean.PD;
 import com.icia.salad82final.bean.Seller;
 import com.icia.salad82final.dao.SellerDao;
 
@@ -60,6 +62,14 @@ public class SellerManagement {
 		}
 		return mav;
 	}  //sMyPage End
+	
+	public void productCreate(PD pd, HttpServletRequest req) throws Exception{
+		//HttpSession session = req.getSession();
+		//pd.setS_id((String)session.getAttribute("id"));
+		pd.setS_id("SELLER5");
+		pd.setP_type("P");
+		sDao.productCreate(pd);
+	}
 
 
 }
