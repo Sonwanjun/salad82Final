@@ -31,8 +31,10 @@
 		SELECT COUNT (*) FROM B_SHORT
 	</select>
 	<select id="getCategory" resultType="category">
-		SELECT * FROM CF_CS WHERE
-		CF_CODE LIKE 1
+		SELECT * FROM CF
+	</select>
+	<select id="getSmallCategory" parameterType="int" resultType="category">
+		SELECT * from CS WHERE CF_CODE=#{param}
 	</select>
 	<!-- distinct는 중복제거 -->
 </mapper>

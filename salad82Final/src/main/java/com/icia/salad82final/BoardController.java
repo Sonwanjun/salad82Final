@@ -32,7 +32,6 @@ public class BoardController {
 
 	@RequestMapping(value = "/myRecipeWrite")
 	public ModelAndView getWriteFrm() {
-		mav = new ModelAndView();
 		mav = bm.getCategory();
 		mav.setViewName("myRecipeWrite");
 		return mav;

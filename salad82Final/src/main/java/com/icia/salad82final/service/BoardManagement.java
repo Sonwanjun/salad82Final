@@ -2,6 +2,7 @@ package com.icia.salad82final.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.icia.salad82final.bean.Board;
 import com.icia.salad82final.bean.Category;
-import com.icia.salad82final.dao.AdminDao;
 import com.icia.salad82final.dao.BoardDao;
 import com.icia.salad82final.userClass.PagingForAjax;
 
@@ -99,13 +99,28 @@ public class BoardManagement {
 
 	public ModelAndView getCategory() {
 		mav = new ModelAndView();
-
-		List<Category> mcList = bDao.getCategory();
-		System.out.println("mcList00" + mcList);
-
-		mav.addObject("mcList", mcList);
-		System.out.println("mcList" + mcList);
+		
+		
+		List<Category> ccList = bDao.getCategory();//이고슨 대분류 
+		System.out.println(ccList.get(0).getCf_name());
+		
+		for(int i=0; i<ccList.size(); i++) {
+			int param = ccList.get(i).getCf_code();//.get(i) 카테고리
+			List<Category> temp = bDao.getSmallCategory(param);
+			switch(ccList.get(i).getCf_code()) {
+			case 1 : mav.addObject("meat", temp);
+				break;
+			case 2 : mav.addObject("fish", temp);
+				break;
+			case 3 : mav.addObject("milk", temp);
+				break;
+			case 4 : mav.addObject("veg", temp);
+				break;
+			}
+		}
+		
+		//소분류만불러오기
+		mav.addObject("ccList",ccList); //여기는 메소드 넣는곳 <+....>같은거 넣으면 안됨
 		return mav;
 	}
-
 }

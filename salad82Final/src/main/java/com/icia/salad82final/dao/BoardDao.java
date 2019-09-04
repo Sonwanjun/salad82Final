@@ -20,4 +20,9 @@ public interface BoardDao {
 
 	List<Category> getCategory();
 
+	List<Category> getSmallCategory(int param);
+
+	
+
+
 }
