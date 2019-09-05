@@ -19,7 +19,7 @@
 	</select>
 
 	<select id="getInfoCount" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM ${value} <!-- string을 인수로 받아서 쓸때는 받은 변수명이 아닌 'value'로 통일해서 써야 한다 -->
+		SELECT COUNT(*) FROM ${viewName} <!-- string을 인수로 받아서 쓸때는 받은 변수명이 아닌 'value'로 통일해서 써야 한다 -->
 	</select>
 
 	<select id="getSellerInfoDetail" parameterType="String" resultType="seller">
@@ -99,6 +99,19 @@
 				#{list}
 			</foreach>
 	</delete>
+	
+	<select id="getAllProduct" parameterType="int" resultType="pd">
+		<![CDATA[
+			SELECT P_TYPE, P_NAME, S_NAME, P_PRICE, P_DATE, P_SELLED, P_PERMISSION, P_CODE
+			FROM ALL_PROD 
+			WHERE RONUM>=#{pageNum}*10-9 AND RONUM<=#{pageNum}*10
+			ORDER BY P_DATE DESC
+		]]>
+	</select>
+	
+	<update id="allow" parameterType="int">
+		UPDATE P SET P_PERMISSION='Y' WHERE P_CODE=#{p_code}
+	</update>
 	
 	<!-- 암호화 되지 않은 비밀번호 암호화 -->
 	<!-- <select id="getCount" parameterType="String" resultType="int">

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -82,8 +83,18 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/productManage")
-	public String productManage() {
-		return "productManage";
+	public ModelAndView productManage(Integer pNum) {
+		
+		mav = am.productManage(pNum);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/allow")
+	public @ResponseBody String allow(Integer p_code) { //jsp 파일명이 아닌걸 리턴할 때는 @ResponseBody 를 반드시 붙이자
+
+		String result = am.allow(p_code);
+		return result;
 	}
 	
 	// 암호화 되지 않은 비밀번호 암호화

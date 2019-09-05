@@ -265,7 +265,7 @@
 			//click()같은 함수도 먹히지 않는다. 이벤트 처리에는 on()을 쓰자.
 			var length = $('#fList :checkbox:checked').length;
 			alert('선택한 체크박스 수는 '+length);
-			//var leng = $('#fList input[name="cfCode"]:checked').length;	//html() 적용
+			//var leng = $('#fList input[name="cfCode"]:checked').length;	//html()로 넣은 태그에는 적용되지 않음
 			//alert('속성 선택자 '+leng);									//
 			
 			if($('#fList input:checked').length==0 && solo==null){ //체크된 대분류 항목이 없다면

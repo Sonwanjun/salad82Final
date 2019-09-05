@@ -3,6 +3,8 @@ package com.icia.salad82final.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.icia.salad82final.bean.Admin;
 import com.icia.salad82final.bean.Category;
 import com.icia.salad82final.bean.Customer;
@@ -16,7 +18,7 @@ public interface AdminDao {
 
 	List<Customer> getCustomerInfo(int pageNum);
 
-	int getInfoCount(String viewName);
+	int getInfoCount(@Param("viewName")String viewName);
 				  //(@Param("이름")String viewName) 처럼 @Param 어노테이션을 쓰면 매퍼에서 지정한 이름을 쓸수있다 
 
 	Seller getSellerInfoDetail(String s_id);
@@ -47,8 +49,10 @@ public interface AdminDao {
 	boolean addSecondCategory(HashMap<String, Object> param);
 
 	void deleteIngrCategory(HashMap<String, Object> param);
-	
-	
+
+	List<PD> getAllProduct(Integer pNum);
+
+	int allow(Integer p_code);	
 	
 	
 

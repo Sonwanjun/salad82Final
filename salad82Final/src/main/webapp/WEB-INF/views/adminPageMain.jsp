@@ -254,11 +254,12 @@ button {
 		});
 	}
 	
-	function productManage(){
+	function productManage(pNum){
 		alert('productManage 실행');
 		$.ajax({
 			type : 'get',
 			url : 'productManage',
+			data : {'pNum':pNum},
 			dataType : 'html',
 			success : function(data){
 				alert('productManage 성공');

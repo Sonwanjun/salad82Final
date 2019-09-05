@@ -27,11 +27,15 @@
 
 #prodList th {
 	background-color: lightgray;
-	height: 25px;
+	height: 35px;
+}
+#prodList td {
+	height : 25px;
+	text-align : center;
 }
 
 #prodList td:nth-child(1) {
-	width: 50px;
+	width: 100px;
 }
 
 #prodList td:nth-child(2) {
@@ -39,7 +43,7 @@
 }
 
 #prodList td:nth-child(3) {
-	width: 200px;
+	width: 150px;
 }
 
 #prodList td:nth-child(4) {
@@ -58,7 +62,9 @@
 	width: 100px;
 }
 
-
+#prodList input {
+	border-radius : 10px;
+}
 /*.menubar li ul {
 background: rgb(109,109,109);
 display:none; 
@@ -89,16 +95,26 @@ display:block;
 			<th>판매량</th>
 			<th>승인여부</th>
 		</tr>
-		<tr>
-			<!-- 품목 정보들 반복문 돌릴자리 -->
-			<td>뿡</td>
-			<td>빵</td>
-			<td>떠</td>
-			<td>러</td>
-			<td>러</td>
-			<td>러</td>
-			<td>♬</td>
-		</tr>
+		<c:forEach var="list" items="${allProduct }">
+			<tr>
+				<td>${list.p_type }</td>
+				<td>${list.p_name }</td>
+				<td>${list.s_name }</td>
+				<td>${list.p_price }</td>
+				<td>${list.p_date }</td>
+				<td>${list.p_selled }</td>
+				<c:choose>
+					<c:when test="${list.p_permission == '승인완료'}">
+						<td><input type="button" value="${list.p_permission }" disabled></td>
+					</c:when>
+					<c:when test="${list.p_permission == '미승인'}">
+						<td>
+						<input type="button" value="${list.p_permission }" onclick="allow(${list.p_code})" title="${list.p_code }">
+						</td>
+					</c:when>
+				</c:choose>
+			</tr>
+		</c:forEach>
 	</table>
 	
 	<!-- 
@@ -128,7 +144,30 @@ display:block;
 	-->
 
 
-	<div align="center">페이징 자리</div>
+	<div align="center">${paging }</div>
 
 </body>
+<script>
+	var clicked;
+	$('#prodList').on('click',':button',function(event){
+		clicked = $(event.target);
+	});
+	function allow(p_code){
+		alert('판매 허가할 제품의 코드 '+p_code);
+		$.ajax({
+			type : 'get',
+			url : 'allow',
+			data : {'p_code':p_code},
+			dataType : 'html',
+			success : function(data){
+				alert('판매가 승인되었습니다');
+				clicked.attr('disabled', 'disabled').attr('value', '승인완료');
+				clicked.html(clicked);
+			},
+			error : function(error){
+				alert('실패다');
+			}
+		});
+	}
+</script>
 </html>

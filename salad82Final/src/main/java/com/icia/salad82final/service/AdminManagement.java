@@ -66,13 +66,16 @@ public class AdminManagement {
 	private String getPaging(int pNum, String infoName, String viewName) {
 		int maxNum = aDao.getInfoCount(viewName); // 총 항목의 갯수
 		int listCount = 5;
+		if(viewName.equals("ALL_PROD")) {
+			listCount = 10;
+		}
 		int pageCount = 2; // 페이지 선택숫자 출력갯수
 		PagingForAjax paging = new PagingForAjax(maxNum, pNum, listCount, pageCount, infoName);
 		return paging.makeHtmlPaging();
 	}
 	private String getPaging(int pNum, String infoName, int maxnum) {
 		int maxNum = maxnum; // 총 항목의 갯수
-		int listCount = 5;
+		int listCount = 5; //페이지당 나타낼 목록 수
 		int pageCount = 2; // 페이지 선택숫자 출력갯수
 		PagingForAjax paging = new PagingForAjax(maxNum, pNum, listCount, pageCount, infoName);
 		return paging.makeHtmlPaging();
@@ -274,6 +277,46 @@ public class AdminManagement {
 		param.put("dbViewName", dbViewName);
 		aDao.deleteIngrCategory(param);
 		
+	}
+
+	public ModelAndView productManage(Integer pNum) {
+		
+		mav = new ModelAndView();
+		String view = null;
+		
+		int pageNum = (pNum == null) ? 1 : pNum;
+		List<PD> allProduct = aDao.getAllProduct(pageNum);
+		for(PD pd : allProduct) {
+			if(pd.getP_permission().equals("Y")) {
+				pd.setP_permission("승인완료");
+			} else {
+				pd.setP_permission("미승인");
+			}
+			
+			if(pd.getP_type().equals("P")) {
+				pd.setP_type("시그니처");
+			} else {
+				pd.setP_type("DIY 재료");
+			}
+		}
+		
+		if(allProduct!=null) {
+			view = "productManage";
+			mav.addObject("allProduct", allProduct);
+			mav.addObject("paging", getPaging(pageNum, view, "ALL_PROD"));
+		} else {
+			view = "home";
+		}
+		mav.setViewName(view);
+		
+		return mav;
+	}
+
+	public String allow(Integer p_code) {
+		
+		int result = aDao.allow(p_code);
+		
+		return String.valueOf(result);
 	}
 	
 	// 암호화 되지 않은 비밀번호 암호화

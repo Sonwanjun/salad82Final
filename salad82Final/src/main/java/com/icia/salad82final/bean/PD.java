@@ -22,5 +22,7 @@ public class PD {
 	
 	private String pi_name; //사진 등록중,,
 	
+	private String s_name; //빈 두개 쓰기가 번거로워서..
+	
 }
 
