@@ -103,6 +103,19 @@ h1 {
 	width: 100%;
 	border: 1px solid #009900;
 }
+
+#cookResource {
+	margin-left: 5px;
+	margin-top: 15px;
+	padding: 20px;
+	text-align: center;
+	width: 100%;
+	border: 1px solid #009900;
+}
+
+#cookResource th {
+	border: 1px solid red;
+}
 </style>
 
 <script
@@ -136,18 +149,18 @@ h1 {
 	</table>
 	<table id="titleAndContents">
 		<tr>
-			<th width="130px" height="150px">레시피 제목</th>
+			<th width="180px" height="150px">레시피 제목</th>
 			<th><textarea id="putTitle" style="resize: none;"></textarea></th>
 	</table>
 	<table id="contentCook">
 		<tr>
-			<th width="130px" height="150px">요리소개</th>
+			<th width="180px" height="150px">요리소개</th>
 			<th><textarea id="putContentCook" rows="10" cols="5"
 					style="resize: none;"></textarea>
 	</table>
 	<table id="categoryTable">
 		<tr>
-			<th width="130px" height="150px">카테고리</th>
+			<th width="180px" height="150px">카테고리</th>
 			<th>육류:<select name="selectBox" id="selectBox"
 				style="width: 80px;" class="select_00">
 					<c:forEach var="Category" items="${meat}">
@@ -173,18 +186,29 @@ h1 {
 					</c:forEach>
 			</select></th>
 			<!--var를 var='Category'라고 선언했을때  대소문자는 같아야한다$('***'.'sql컬럼명(cs_name))'-->
-			
+
 
 
 		</tr>
 	</table>
-	<table id="cookInfo">
-		<tr>
-			<th width="130px" height="80px">요리정보</th>
-			<th>조리방법</th>
-			<th>재료</th>
-			<th>시간</th>
+	<table id="cookResource">
+		<thead>
+			<tr>
+				<th width="180px" height="150px">재료종류</th>
+				<th>재료</th>
+				<th>수량:<input type='text' value='0' id='quan'
+					style='width: 30px'></th>
+				<th><input type='button' onclick='up()' value='△'> <input
+					type='button' onclick='down()' value='▽'></th>
+				<th>계량정보:<input type='text' id='cookInfo' style='width: 150px;'></th>
+				<th><input type='button' id='addForm' onclick='addForm()'
+					value='+'><input type='button' id='delForm'
+					onclick='delForm()' value='-'></th>
+			</tr>
+		</thead>
+		<tbody id="mytbody"></tbody>
 	</table>
+
 
 
 
@@ -209,6 +233,55 @@ h1 {
 <script>
 	function logout() {
 		$('#logoutFrm').submit(); //서버로 전송
+	}
+</script>
+<script>
+	/*var addResource
+	 $.ajax({
+	 type : 'post', // 데이터  방식 
+	 url : './addCookResource', //콘트롤러에서 요청? 
+	 data : data,    //서버로 보낼값은 재료들 상추 고기 흰살생선 
+	
+	 success:function(data){ // 성공일시  상추 고기 흰살생선이 더야함 param에 담을것 
+	 alert(성공)
+	 console.log(data);
+	
+	 error:function(error){
+	 alert(실패)
+	 console.log(data);
+	
+	 })*/
+</script>
+<script>
+	function down() {
+		var expense = $("#quan").val();
+		expense = (Number(expense) - 1);
+		if (expense >= 0) {
+			$("#quan").val(expense);
+		}
+	};
+	function up() {
+		var expense = $("#quan").val();
+		expense = (Number(expense) + 1);
+		if ($("#quan").val() < 100) {
+			$("#quan").val(expense);
+		}
+	};
+</script>
+<script>
+	function addForm() {
+		var addForm = document.getElementById('mytbody');
+		var row = addForm.insertRow(addForm.rows.length);
+		var cell1 = row.insertCell(0);
+		var cell2 = row.insertCell(1);
+		cell1.innerHTML = '항목'
+		cell2.innerHTML = '뜨아아아'
+	}
+	function delForm() {
+		var delForm = document.getElementById('mytbody');
+		if (delForm.rows.length < 1)
+			return;
+		delForm.deleteRow(delForm.rows.length-1);
 	}
 </script>
 </html>

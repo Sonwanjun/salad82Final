@@ -101,12 +101,12 @@ public class BoardManagement {
 		mav = new ModelAndView();
 		
 		
-		List<Category> ccList = bDao.getCategory();//이고슨 대분류 
-		System.out.println(ccList.get(0).getCf_name());
+		List<Category> ccList = bDao.getCategory();//이고슨 대분류 리스트 
+		System.out.println(ccList.get(0).getCf_name()); //'get(0)'0번쨰인 요소를 가져오겟다 <getCf_name()? 잘받아왔나보려고
 		
 		for(int i=0; i<ccList.size(); i++) {
 			int param = ccList.get(i).getCf_code();//.get(i) 카테고리
-			List<Category> temp = bDao.getSmallCategory(param);
+			List<Category> temp = bDao.getSmallCategory(param); //현재temp는 => List<Category>가 temp(갈색깔에 지칭해놓은 녀석)
 			switch(ccList.get(i).getCf_code()) {
 			case 1 : mav.addObject("meat", temp);
 				break;
@@ -121,6 +121,15 @@ public class BoardManagement {
 		
 		//소분류만불러오기
 		mav.addObject("ccList",ccList); //여기는 메소드 넣는곳 <+....>같은거 넣으면 안됨
+		return mav;   //mav.addObject한 현재ccList는(이위치있는 놈) 
+					  //List<Category>값을 반복문으로 실행중
+	}
+
+	public ModelAndView getCookResource() {
+		mav=new ModelAndView();
+		
+		List<Category> crList = bDao.getCookResource();
+		System.out.println(crList.get(0).getCf_name());
 		return mav;
 	}
 }

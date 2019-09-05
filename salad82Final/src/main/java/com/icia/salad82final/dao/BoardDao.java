@@ -22,6 +22,8 @@ public interface BoardDao {
 
 	List<Category> getSmallCategory(int param);
 
+	List<Category> getCookResource();
+
 	
 
 

@@ -11,7 +11,7 @@
 	</select>
 	<select id="getBoardCount" resultType="int">
 		SELECT COUNT(*) FROM BLIST
-</select>
+	</select>
 	<select id="getContents" parameterType="int" resultType="board">
 		SELECT *
 		FROM BLIST WHERE BNUM=#{b_Num}
@@ -28,10 +28,15 @@
 	</select>
 	<select id="boardListCount" parameterType="Integer"
 		resultType="board">
-		SELECT COUNT (*) FROM B_SHORT 
+		SELECT COUNT (*) FROM B_SHORT
 	</select>
+	<select id="getCategory" resultType="category">
+		SELECT * FROM CF
+	</select>
+	<select id="getSmallCategory" parameterType="int" resultType="category">
+		SELECT * from CS WHERE CF_CODE=#{param}
+	</select>
+	<!-- distinct는 중복제거 -->
 </mapper>
-<!-- <![CDATA[ 
-		SELECT * FROM B_SHORT 
-		WHERE RONUM>=#{pageNum}*5-4 AND RONUM<=#{pageNum}*5
-		]]> -->
+<!-- <![CDATA[ SELECT * FROM B_SHORT WHERE RONUM>=#{pageNum}*5-4 AND RONUM<=#{pageNum}*5 
+	]]> -->

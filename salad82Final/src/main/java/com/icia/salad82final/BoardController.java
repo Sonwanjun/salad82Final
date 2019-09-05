@@ -75,4 +75,11 @@ public class BoardController {
 
 	}
 
+	@RequestMapping(value = "/addCookResource", method = RequestMethod.POST)
+	public ModelAndView addCookResource() {
+		mav = bm.getCookResource();
+
+		return mav;
+	
+	}
 }
