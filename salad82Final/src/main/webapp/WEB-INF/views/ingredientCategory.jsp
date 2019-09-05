@@ -74,7 +74,7 @@
 		width : 130px;
 		height : 25px;
 	}
-	.btArea input[type='button']:not([id='delChecked']) {
+	.btArea input[type='button']:not([class='delChecked']) {
 		width : 100px;
 		height : 30px;
 	}
@@ -90,7 +90,7 @@
 		border-radius : 10px;
 	}
 	
-	#delChecked {
+	.delChecked {
 		width : 120px;
 		height : 90px;
 	}
@@ -102,6 +102,7 @@
 	.divs img:hover {
 		cursor : pointer;
 	}
+	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -110,7 +111,7 @@
 	<div class="divs">
 		<p id="fCount">대분류(${count.cf_count })</p>
 		
-		<form action="어디로갈까" method="get">
+		
 			<div class="listArea">	<!-- 대분류 리스트가 뜰 영역 -->
 				<table id="fList">
 					<c:forEach var="list" items="${first }">
@@ -126,21 +127,21 @@
 			<table class="btArea">
 				<tr>
 					<td colspan="2"><input type="text" id="fName" placeholder="추가할 대분류"></td>
-					<td rowspan="2"><input type="button" id="delChecked" value="체크항목삭제" onclick="deleteChkCategory('CF')"></td>
+					<td rowspan="2"><input type="button" class="delChecked" value="체크항목삭제" onclick="deleteChkCategory('CF')"></td>
 				</tr>
 				<tr>
 					<td><input type="button" value="추가" onclick="addCategory('CF')"></td>
 					<td><input type="button" value="취소" onclick="cleanText('CF')"></td>
 				</tr>
 			</table>
-		</form>
+		
 	</div>
 	
 	<!---------- 소분류 영역 ---------->
 	<div class="divs">
 		<p id="sCount">소분류(${count.cs_count })</p>
 		
-		<form action="어디로갈까" method="get">
+		
 			<div class="listArea">	<!-- 소분류 리스트가 뜰 영역 -->
 				<table id="sList">
 					<c:forEach var="list" items="${second }">
@@ -163,25 +164,18 @@
 						</select>
 						<input type="text" id="sName" placeholder="추가할 소분류">
 					</td>
-					<td rowspan="2"><input type="button" id="delChecked" value="체크항목삭제" onclick="deleteChkCategory('CS')"></td>
+					<td rowspan="2"><input type="button" class="delChecked" value="체크항목삭제" onclick="deleteChkCategory('CS')"></td>
 				</tr>
 				<tr>
 					<td><input type="button" value="추가" onclick="addCategory('CS')"></td>
 					<td><input type="button" value="취소" onclick="cleanText('CS')"></td>
 				</tr>
 			</table>
-		</form>
+		
 	</div>
 </body>
 <script>
-	$('#fList img').click(function(event) {
-		var cf_code = $(event.target).attr('alt');
-		deleteChkCategory('CF',cf_code);
-	});
-	$('#sList img').click(function(event) {
-		var cs_code = $(event.target).attr('alt');
-		deleteChkCategory('CS',cs_code);
-	});
+	
 	
 	function addCategory(dbViewName){
 		var category; //추가할 대분류or소분류명을 담을 변수
@@ -195,19 +189,20 @@
 			$.ajax({
 				type : 'get',
 				url : 'ajax/addFirstCategory',
-				contentType : 'application/json; charset=UTF-8',
 				data : {'dbViewName':dbViewName , 'category':category},
 				dataType : 'json',
 				success : function(data){
 					alert('대분류 추가 성공');
-					
 					var fList = '';
 					//추가 후의 대분류리스트 표시부분 수정하기
 					for(var i=0; i<data.first.length; i++){
-						fList += '<tr><td><input type="checkbox" name="cfCode" value="'+data.first[i].cf_code
+						fList += '<tr><td><input type="checkbox" name="cfcode" value="'+data.first[i].cf_code
 								+'"></td><td>'+data.first[i].cf_name+'</td><td>'
-								+'<img src="resources/minusButton.png" alt="'+data.first[i].cf_code+'"></td></tr>';
-					};
+								+'<img src="resources/minusButton.png" alt="'+data.first[i].cf_code+'" title="되냐"></td></tr>';
+					}
+					
+					
+					
 					//대분류 갯수 수정
 					var fCount = '대분류('+data.count.cf_count+')';
 					//소분류쪽 셀렉트박스 수정
@@ -244,10 +239,10 @@
 					var sList = '';
 					//추가 후의 소분류리스트 표시부분 수정
 					for(var i=0; i<data.second.length; i++){
-						sList += '<tr><td><input type="checkbox" name="cs_code" value="'+data.second[i].cs_code
+						sList += '<tr><td><input type="checkbox" name="csCode" value="'+data.second[i].cs_code
 								+'"></td><td>'+data.second[i].cs_name+'</td><td>'
 								+'<img src="resources/minusButton.png" alt="'+data.second[i].cs_code+'"></td></tr>';
-					};
+					}
 					//소분류 갯수 수정
 					var sCount = '소분류('+data.count.cs_count+')';
 					
@@ -266,17 +261,24 @@
 
 		if(dbViewName=='CF'){ /////////////////삭제하려는 분류가 대분류일때
 			
-			if($('input[name="cfCode"]:checked').length==0 && solo==null){ //체크된 대분류 항목이 없다면
+			//★★★★★중요★★★★★ jquery에서 html()로 붙여넣은 태그는 css 속성 선택자(대괄호)가 먹히지 않는다
+			//click()같은 함수도 먹히지 않는다. 이벤트 처리에는 on()을 쓰자.
+			var length = $('#fList :checkbox:checked').length;
+			alert('선택한 체크박스 수는 '+length);
+			//var leng = $('#fList input[name="cfCode"]:checked').length;	//html() 적용
+			//alert('속성 선택자 '+leng);									//
+			
+			if($('#fList input:checked').length==0 && solo==null){ //체크된 대분류 항목이 없다면
 				alert('선택한 대분류가 없습니다');
 				return false;
 			}
-			if(confirm('대분류 삭제시 해당 대분류의 하위 분류(소분류)도 같이 삭제됩니다.삭제하시겠습니까?')==false){
+			if(confirm('대분류 삭제시 해당 대분류에 포함된 소분류도 같이 삭제됩니다.삭제하시겠습니까?')==false){
 				return false;
 			}
 			var c;
 			if(solo==null){ //체크박스로 삭제시
 				c = new Array();
-				$('input[name="cfCode"]:checked').each(function(){ 
+				$('#fList input:checked').each(function(){ 
 					c.push($(this).val()); //체크된 대분류 항목의 코드를 배열에 넣음
 				});
 			} else { //단일 항목 삭제시
@@ -301,7 +303,7 @@
 			
 		} else if(dbViewName=='CS') { /////////////////삭제하려는 분류가 소분류일때
 			
-			if($('input[name="csCode"]:checked').length==0 && solo==null){ //체크된 소분류 항목이 없다면
+			if($('#sList input:checked').length==0 && solo==null){ //체크된 소분류 항목이 없다면
 				alert('선택한 소분류가 없습니다');
 				return false;
 			}
@@ -310,7 +312,7 @@
 			}
 			var c = new Array();
 			if(solo==null){ //체크박스로 삭제시
-				$('input[name="csCode"]:checked').each(function(){ 
+				$('#sList input:checked').each(function(){ 
 					c.push($(this).val()); //체크된 소분류 항목의 코드를 배열에 넣음
 				});
 			} else { //단일 항목 삭제시
@@ -335,6 +337,22 @@
 		}
 		
 	};
+	$('#fList').on('click','img',function() {
+		var cf_code = $(this).attr('alt');
+		alert('대분류 개별삭제');
+		alert(cf_code);
+		deleteChkCategory('CF',cf_code);
+	});
+	/*$('#fList img').click(function(event) {
+		var cf_code = $(event.target).attr('alt');
+		alert('대분류 개별삭제');
+		deleteChkCategory('CF',cf_code);
+	});*/
+	$('#sList').on('click','img',function() {
+		alert('소분류 개별삭제');
+		var cs_code = $(this).attr('alt');
+		deleteChkCategory('CS',cs_code);
+	});
 	
 	function cleanText(dbViewName){
 		if(dbViewName=='CF'){

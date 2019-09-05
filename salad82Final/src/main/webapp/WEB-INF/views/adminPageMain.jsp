@@ -13,9 +13,19 @@
             src:url('resources/NNsquare.ttf') format('truetype');
 }
 
+input[type='button'] {
+	outline : 0;
+}
+
 body {
 	width: 100%;
 	height: 100%;
+	font-family : 'SQUARE';
+}
+
+button {
+	border : 0;
+	outline: 0;
 }
 
 #wrapper {
@@ -147,7 +157,7 @@ body {
 						<td onclick="goIngrPage()">DIY 재료 분류 관리</td>
 					</tr>
 					<tr>
-						<td>메뉴3</td>
+						<td onclick="productManage()">전체 품목 조회 및 승인</td>
 					</tr>
 					<tr>
 						<td>메뉴4</td>
@@ -243,5 +253,24 @@ body {
 			}
 		});
 	}
+	
+	function productManage(){
+		alert('productManage 실행');
+		$.ajax({
+			type : 'get',
+			url : 'productManage',
+			dataType : 'html',
+			success : function(data){
+				alert('productManage 성공');
+				$('#ajaxArea').html(data);
+			},
+			error : function(error){
+				alert('productManage 실패');
+				console.log(error);
+			}
+		});
+	}
+	
+	
 </script>
 </html>

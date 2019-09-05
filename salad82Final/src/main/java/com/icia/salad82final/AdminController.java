@@ -70,14 +70,20 @@ public class AdminController {
 		return mav;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/deleteIngrCategory")
 	public String deleteIngrCategory(String json, String dbViewName) {
 
-		List<Integer> codes = new Gson().fromJson(json, List.class);
+		List<Integer> codes = new Gson().fromJson(json, List.class); //삭제할 분류코드를 json → 리스트 변환
 		
 		am.deleteIngrCategory(codes, dbViewName);
 		
 		return "forward:ingredientCategory";
+	}
+	
+	@RequestMapping(value = "/productManage")
+	public String productManage() {
+		return "productManage";
 	}
 	
 	// 암호화 되지 않은 비밀번호 암호화

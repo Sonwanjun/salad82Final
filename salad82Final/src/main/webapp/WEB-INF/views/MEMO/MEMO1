@@ -1,0 +1,13 @@
+★★중요★★
+	jquery에서 html()로 붙여넣은 태그는 속성 선택자(대괄호)가 먹히지 않는다
+	click()같은 함수도 먹히지 않는다. 이벤트 바인딩에는 on()을 쓰자.
+	
+	예) $('#fList').html(붙여넣을 내용); 
+		
+		위 코드를 실행했을 때
+	
+	var length = $('#fList input[name="cfCode"]:checked').length;	//이 코드는 작동하지 않음
+	alert('속성 선택자 '+length);
+	
+	var length = $('#fList :checkbox:checked').length;	//이 코드는 작동 잘됨
+	alert('선택한 체크박스 수는 '+length);	
