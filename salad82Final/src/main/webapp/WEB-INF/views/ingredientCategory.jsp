@@ -256,14 +256,15 @@
 			});
 		}
 	}
+	
 
 	function deleteChkCategory(dbViewName, solo){ //solo : 체크를 통하지 않고 개별항목 삭제시 전달받을 분류 코드
 
 		if(dbViewName=='CF'){ /////////////////삭제하려는 분류가 대분류일때
 			
-			//★★★★★중요★★★★★ jquery에서 html()로 붙여넣은 태그는 css 속성 선택자(대괄호)가 먹히지 않는다
+			//★★★★★중요★★★★★ jquery에서 html()로 붙여넣은 태그는 속성 선택자(대괄호)가 먹히지 않는다
 			//click()같은 함수도 먹히지 않는다. 이벤트 처리에는 on()을 쓰자.
-			var length = $('#fList :checkbox:checked').length;
+			var length = $('#fList :checkbox:checked').length; // :checkbox는 jquery 전용. css에서는 작동하지 않는다
 			alert('선택한 체크박스 수는 '+length);
 			//var leng = $('#fList input[name="cfCode"]:checked').length;	//html()로 넣은 태그에는 적용되지 않음
 			//alert('속성 선택자 '+leng);									//
@@ -275,14 +276,12 @@
 			if(confirm('대분류 삭제시 해당 대분류에 포함된 소분류도 같이 삭제됩니다.삭제하시겠습니까?')==false){
 				return false;
 			}
-			var c;
+			var c = new Array();
 			if(solo==null){ //체크박스로 삭제시
-				c = new Array();
 				$('#fList input:checked').each(function(){ 
 					c.push($(this).val()); //체크된 대분류 항목의 코드를 배열에 넣음
 				});
 			} else { //단일 항목 삭제시
-				c = new Array();
 				c.push(solo);
 			}
 			var json = JSON.stringify(c);

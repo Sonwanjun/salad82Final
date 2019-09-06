@@ -22,7 +22,6 @@
 
 #prodList td, th {
 	border: 1px solid red;
-	padding-left: 10px;
 }
 
 #prodList th {
@@ -36,6 +35,7 @@
 
 #prodList td:nth-child(1) {
 	width: 100px;
+	font-weight : bold;
 }
 
 #prodList td:nth-child(2) {
